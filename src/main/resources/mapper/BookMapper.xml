@@ -5,18 +5,33 @@
 <mapper namespace="com.zihuv.managebooks.dao.BookDao">
     <insert id="insertCategory">
         INSERT INTO book_category
-        SET category_name = #{category_name};
+        SET category_name = #{categoryName};
     </insert>
+    <select id="getCategoryByCategoryName" resultType="java.lang.String">
+        SELECT category_name
+        FROM book_category
+        WHERE category_name = #{categoryName};
+    </select>
     <delete id="deleteCategoryById">
         DELETE
         FROM book_category
         WHERE id = #{id};
     </delete>
+    <select id="getCategoryById" resultType="java.lang.Integer">
+        SELECT id
+        FROM book_category
+        WHERE id = #{id};
+    </select>
     <insert id="insertBook">
-        INSERT INTO book
-        VALUES (null, #{book_name}, #{book_author}, #{book_publish}, #{book_category}, #{book_prize},
-                #{book_introduction});
+        INSERT INTO book(id, book_name, book_author, book_publish, book_category, book_prize, book_introduction)
+        VALUES (null, #{bookName}, #{bookAuthor}, #{bookPublish}, #{bookCategory}, #{bookPrize},
+                #{bookIntroduction});
     </insert>
+    <select id="getBookById" resultType="int">
+        SELECT id
+        FROM book
+        WHERE id = #{id};
+    </select>
     <delete id="deleteBookById">
         DELETE
         FROM book
@@ -25,25 +40,32 @@
     <update id="updateBook">
         UPDATE book
         <set>
-            <if test="book_name != null">
-                book_name = #{book_name},
+            <if test="bookName != null">
+                book_name = #{bookName},
             </if>
-            <if test="book_author != null">
-                book_author = #{book_author},
+            <if test="bookAuthor != null">
+                book_author = #{bookAuthor},
             </if>
-            <if test="book_publish != null">
-                book_publish = #{book_publish},
+            <if test="bookPublish != null">
+                book_publish = #{bookPublish},
             </if>
-            <if test="book_category != null">
-                book_category = #{book_category},
+            <if test="bookCategory != null">
+                book_category = #{bookCategory},
             </if>
-            <if test="book_prize != null">
-                book_prize= #{book_prize}
+            <if test="bookPrize != null">
+                book_prize = #{bookPrize},
+            </if>
+            <if test="bookIntroduction">
+                book_introduction = #{bookIntroduction}
             </if>
         </set>
+        <where>
+            id = #{id};
+        </where>
     </update>
     <select id="listBook" resultType="com.zihuv.managebooks.entity.Book">
-        SELECT * FROM book;
+        SELECT *
+        FROM book;
     </select>
 
 </mapper>

@@ -1,0 +1,12 @@
+{
+  "outPath": "./src/main/resources/static/doc",
+  "errorCodeDictionaries": [
+    {
+      "title": "title",
+      "enumClassName": "com.zihuv.managebooks.enums.StatusCodeEnums",
+      "codeField": "code",
+      "descField": "message",
+      "valuesResolverClass": ""
+    }
+  ]
+}

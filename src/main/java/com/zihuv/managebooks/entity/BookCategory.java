@@ -3,6 +3,8 @@ package com.zihuv.managebooks.entity;
 import lombok.Data;
 
 /**
+ * 书籍类别
+ *
  * @author: zihuv
  * @date: 2023/1/21
  */

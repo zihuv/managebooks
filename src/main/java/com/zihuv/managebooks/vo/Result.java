@@ -1,6 +1,8 @@
 package com.zihuv.managebooks.vo;
 
-import com.zihuv.managebooks.enums.StatusCode;
+
+import com.zihuv.managebooks.enums.StatusCodeEnums;
+import com.zihuv.managebooks.exception.BizException;
 import lombok.Data;
 
 /**
@@ -27,27 +29,31 @@ public class Result<T> {
     private T data;
 
     public static <T> Result<T> success() {
-        return makeResult(StatusCode.SUCCESS.getCode(), StatusCode.SUCCESS.getMessage(), null);
+        return makeResult(StatusCodeEnums.SUCCESS.getCode(), StatusCodeEnums.SUCCESS.getMessage(), null);
     }
 
     public static <T> Result<T> success(T data) {
-        return makeResult(StatusCode.SUCCESS.getCode(), StatusCode.SUCCESS.getMessage(), data);
+        return makeResult(StatusCodeEnums.SUCCESS.getCode(), StatusCodeEnums.SUCCESS.getMessage(), data);
     }
 
     public static <T> Result<T> error() {
-        return makeResult(StatusCode.ERROR.getCode(), StatusCode.ERROR.getMessage(), null);
+        return makeResult(StatusCodeEnums.ERROR.getCode(), StatusCodeEnums.ERROR.getMessage(), null);
     }
 
     public static <T> Result<T> error(T data) {
-        return makeResult(StatusCode.ERROR.getCode(), StatusCode.ERROR.getMessage(), data);
+        return makeResult(StatusCodeEnums.ERROR.getCode(), StatusCodeEnums.ERROR.getMessage(), data);
     }
 
-    public static <T> Result<T> error(StatusCode statusCode) {
+    public static <T> Result<T> error(StatusCodeEnums statusCode) {
         return makeResult(statusCode.getCode(), statusCode.getMessage(), null);
     }
 
-    public static <T> Result<T> error(StatusCode statusCode, T data) {
+    public static <T> Result<T> error(StatusCodeEnums statusCode, T data) {
         return makeResult(statusCode.getCode(), statusCode.getMessage(), data);
+    }
+
+    public static <T> Result<T> error(BizException e) {
+        return makeResult(e.getCode(),e.getMessage(),null);
     }
 
     /**

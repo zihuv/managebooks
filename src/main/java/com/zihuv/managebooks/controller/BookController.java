@@ -23,61 +23,61 @@ public class BookController {
     /**
      * 添加书籍类别
      *
-     * @param bookCategory
-     * @return com.zihuv.managebooks.vo.Result<java.lang.Boolean>
+     * @param bookCategory 书籍类别对象
+     * @return com.zihuv.managebooks.vo.Result<?>
      */
     @PostMapping("/category")
-    public Result<Boolean> insertCategory(@RequestBody BookCategory bookCategory) {
-        boolean flag = bookService.insertCategory(bookCategory.getCategoryName()) > 0;
-        return Result.success(flag);
+    public Result<?> insertCategory(@RequestBody BookCategory bookCategory) {
+        bookService.insertCategory(bookCategory.getCategoryName());
+        return Result.success();
     }
 
     /**
      * 删除书籍类别
      *
-     * @param id
-     * @return com.zihuv.managebooks.vo.Result<java.lang.Boolean>
+     * @param id 书籍类别的id
+     * @return com.zihuv.managebooks.vo.Result<?>
      */
     @PutMapping("/category/{id}")
     public Result<Boolean> deleteCategoryById(@PathVariable Integer id) {
-        boolean flag = bookService.deleteCategoryById(id) > 0;
-        return Result.success(flag);
+        bookService.deleteCategoryById(id);
+        return Result.success();
     }
 
     /**
      * 添加书籍
      *
-     * @param book
-     * @return com.zihuv.managebooks.vo.Result<java.lang.Boolean>
+     * @param book 书籍对象
+     * @return com.zihuv.managebooks.vo.Result<?>
      */
     @PostMapping("/book")
-    public Result<Boolean> insertBook(@RequestBody Book book) {
-        boolean flag = bookService.insertBook(book) > 0;
-        return Result.success(flag);
+    public Result<?> insertBook(@RequestBody Book book) {
+        bookService.insertBook(book);
+        return Result.success();
     }
 
     /**
      * 删除书籍
      *
-     * @param id
-     * @return com.zihuv.managebooks.vo.Result<java.lang.Boolean>
+     * @param id 书籍的id
+     * @return com.zihuv.managebooks.vo.Result<?>
      */
     @PutMapping("/book/{id}")
-    public Result<Boolean> deleteBookById(@PathVariable Integer id) {
-        boolean flag = bookService.deleteBookById(id) > 0;
-        return Result.success(flag);
+    public Result<?> deleteBookById(@PathVariable Integer id) {
+        bookService.deleteBookById(id);
+        return Result.success();
     }
 
     /**
      * 修改书籍信息
      *
-     * @param book
-     * @return com.zihuv.managebooks.vo.Result<java.lang.Boolean>
+     * @param book 书籍对象
+     * @return com.zihuv.managebooks.vo.Result<?>
      */
     @PutMapping("/book")
-    public Result<Boolean> updateBook(@RequestBody Book book) {
-        boolean flag = bookService.updateBook(book) > 0;
-        return Result.success(flag);
+    public Result<?> updateBook(@RequestBody Book book) {
+        bookService.updateBook(book);
+        return Result.success();
     }
 
     /**
@@ -85,7 +85,7 @@ public class BookController {
      *
      * @return com.zihuv.managebooks.vo.Result<java.util.List<com.zihuv.managebooks.entity.Book>>
      */
-    @GetMapping("book")
+    @GetMapping("/book")
     public Result<List<Book>> listBook() {
         List<Book> result = bookService.listBook();
         return Result.success(result);
