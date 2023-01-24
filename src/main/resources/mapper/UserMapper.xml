@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zihuv.managebooks.dao.UserDao">
+    <select id="getUserByUserName" resultType="com.zihuv.managebooks.entity.User">
+        SELECT id, user_name, user_password, user_email
+        FROM user
+        WHERE user_name = #{userName};
+    </select>
+    <insert id="insertUser">
+        INSERT INTO user(id, user_name, user_password, user_email)
+        VALUES (null, #{userName}, #{userPassword}, #{userEmail});
+    </insert>
+    <update id="updateUser">
+        UPDATE user
+        <set>
+            <if test="userName != null">
+                user_name = #{userName},
+            </if>
+            <if test="userPassword != null">
+                user_password = #{userPassword},
+            </if>
+            <if test="userEmail != null">
+                user_email = #{userEmail}
+            </if>
+        </set>
+        <where>
+            id = #{id};
+        </where>
+    </update>
+    <select id="getUserById" resultType="com.zihuv.managebooks.entity.User">
+        SELECT id, user_name, user_password, user_email
+        FROM user
+        WHERE id = #{id};
+    </select>
+</mapper>

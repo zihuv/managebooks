@@ -17,27 +17,8 @@ import java.util.List;
 @Service
 public class BookServiceImpl implements BookService {
     @Autowired
-    BookDao bookDao;
+    private BookDao bookDao;
 
-    @Override
-    public void insertCategory(String categoryName) {
-        String result = bookDao.getCategoryByCategoryName(categoryName);
-        //判断所添加的类别是否已经存在，若存在，无法添加，result!=null，抛出异常
-        if (result != null) {
-            throw new BizException(BookStatusEnums.CATEGORY_IS_EXIST);
-        }
-        bookDao.insertCategory(categoryName);
-    }
-
-    @Override
-    public void deleteCategoryById(Integer id) {
-        int result = bookDao.getCategoryById(id);
-        //判断所删除的类别是否已经存在，若不存在，无法删除，result==0，抛出异常
-        if (result == 0) {
-            throw new BizException(BookStatusEnums.CATEGORY_NOT_EXIST);
-        }
-        bookDao.deleteCategoryById(id);
-    }
 
     @Override
     public void insertBook(Book book) {

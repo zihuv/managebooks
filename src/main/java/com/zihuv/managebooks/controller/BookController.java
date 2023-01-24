@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 /**
- * 书籍管理
+ * 书籍管理Controller
  *
  * @author: zihuv
  * @date: 2023/1/20
@@ -18,31 +18,7 @@ import java.util.List;
 @RestController
 public class BookController {
     @Autowired
-    BookService bookService;
-
-    /**
-     * 添加书籍类别
-     *
-     * @param bookCategory 书籍类别对象
-     * @return com.zihuv.managebooks.vo.Result<?>
-     */
-    @PostMapping("/category")
-    public Result<?> insertCategory(@RequestBody BookCategory bookCategory) {
-        bookService.insertCategory(bookCategory.getCategoryName());
-        return Result.success();
-    }
-
-    /**
-     * 删除书籍类别
-     *
-     * @param id 书籍类别的id
-     * @return com.zihuv.managebooks.vo.Result<?>
-     */
-    @PutMapping("/category/{id}")
-    public Result<Boolean> deleteCategoryById(@PathVariable Integer id) {
-        bookService.deleteCategoryById(id);
-        return Result.success();
-    }
+    private BookService bookService;
 
     /**
      * 添加书籍

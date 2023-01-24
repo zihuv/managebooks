@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 /**
- * 有关书籍异常信息的枚举类
+ * 有关书籍与书籍类别异常信息的枚举类
  *
  * @author: zihuv
  * @date: 2023/1/22

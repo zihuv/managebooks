@@ -3,6 +3,7 @@ package com.zihuv.managebooks.exception;
 
 import com.zihuv.managebooks.enums.BookStatusEnums;
 import com.zihuv.managebooks.enums.StatusCodeEnums;
+import com.zihuv.managebooks.enums.UserAdminEnums;
 import lombok.Getter;
 
 /**
@@ -30,6 +31,11 @@ public class BizException extends RuntimeException{
     }
 
     public BizException(BookStatusEnums statusCode) {
+        this.code = statusCode.getCode();
+        this.message = statusCode.getMessage();
+    }
+
+    public BizException(UserAdminEnums statusCode) {
         this.code = statusCode.getCode();
         this.message = statusCode.getMessage();
     }

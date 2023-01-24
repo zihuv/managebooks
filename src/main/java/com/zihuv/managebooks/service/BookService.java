@@ -14,20 +14,6 @@ import java.util.List;
 
 public interface BookService {
     /**
-     * 添加书籍类别
-     *
-     * @param categoryName 书籍类型名称
-     */
-    void insertCategory(String categoryName);
-
-    /**
-     * 根据id删除书籍类别
-     *
-     * @param id 书籍类别的id
-     */
-    void deleteCategoryById(Integer id);
-
-    /**
      * 添加书籍
      *
      * @param book 书籍对象
@@ -48,5 +34,10 @@ public interface BookService {
      */
     void updateBook(Book book);
 
+    /**
+     * 查询所有书籍
+     *
+     * @return java.util.List<com.zihuv.managebooks.entity.Book>
+     */
     List<Book> listBook();
 }
