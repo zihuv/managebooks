@@ -15,6 +15,6 @@ public class Book {
     private String bookAuthor;
     private String bookPublish;
     private Integer bookCategory;
-    private Integer bookPrize;
+    private Double bookPrize;
     private String bookIntroduction;
 }

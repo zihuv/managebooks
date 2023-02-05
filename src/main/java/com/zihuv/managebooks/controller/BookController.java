@@ -1,8 +1,8 @@
 package com.zihuv.managebooks.controller;
 
 import com.zihuv.managebooks.entity.Book;
-import com.zihuv.managebooks.entity.BookCategory;
 import com.zihuv.managebooks.service.BookService;
+import com.zihuv.managebooks.vo.BookVO;
 import com.zihuv.managebooks.vo.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -38,7 +38,7 @@ public class BookController {
      * @param id 书籍的id
      * @return com.zihuv.managebooks.vo.Result<?>
      */
-    @PutMapping("/book/{id}")
+    @DeleteMapping("/book/{id}")
     public Result<?> deleteBookById(@PathVariable Integer id) {
         bookService.deleteBookById(id);
         return Result.success();
@@ -59,11 +59,56 @@ public class BookController {
     /**
      * 查询所有书籍
      *
-     * @return com.zihuv.managebooks.vo.Result<java.util.List<com.zihuv.managebooks.entity.Book>>
+     * @param pageNum
+     * @param pageSize
+     * @return com.zihuv.managebooks.vo.Result<java.util.List < com.zihuv.managebooks.vo.BookVO>>
+     */
+    @GetMapping("/book/list")
+    public Result<List<BookVO>> listBook(@RequestParam Integer pageNum,
+                                         @RequestParam Integer pageSize) {
+        List<BookVO> result = bookService.listBook(pageNum, pageSize);
+        return Result.success(result);
+    }
+
+    /**
+     * 根据id查询书籍
+     *
+     * @param id
+     * @return com.zihuv.managebooks.vo.Result<com.zihuv.managebooks.vo.BookVO>
+     */
+    @GetMapping("/book/{id}")
+    public Result<BookVO> getBookById(@PathVariable Integer id) {
+        BookVO book = bookService.getBookById(id);
+        return Result.success(book);
+    }
+
+    /**
+     * 根据书名查询书籍
+     *
+     * @param bookName 书籍名称
+     * @return com.zihuv.managebooks.vo.Result<java.util.List < com.zihuv.managebooks.vo.BookVO>>
      */
     @GetMapping("/book")
-    public Result<List<Book>> listBook() {
-        List<Book> result = bookService.listBook();
-        return Result.success(result);
+    public Result<List<BookVO>> listBookByBookName(@RequestParam String bookName,
+                                                   @RequestParam Integer pageNum,
+                                                   @RequestParam Integer pageSize) {
+        List<BookVO> books = bookService.listBookByBookName(bookName, pageNum, pageSize);
+        return Result.success(books);
+    }
+
+    /**
+     * 根据书籍类别查询书籍
+     *
+     * @param categoryName 类别名称
+     * @param pageNum      页码
+     * @param pageSize
+     * @return com.zihuv.managebooks.vo.Result<java.util.List < com.zihuv.managebooks.vo.BookVO>>
+     */
+    @GetMapping("/book/category")
+    public Result<List<BookVO>> listBookByCategory(@RequestParam String categoryName,
+                                                   @RequestParam Integer pageNum,
+                                                   @RequestParam Integer pageSize) {
+        List<BookVO> books = bookService.listBookByCategory(categoryName, pageNum, pageSize);
+        return Result.success(books);
     }
 }

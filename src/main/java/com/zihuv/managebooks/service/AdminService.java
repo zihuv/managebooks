@@ -28,9 +28,11 @@ public interface AdminService {
     /**
      * 查询所有管理员
      *
+     * @param pageNum 页码
+     * @param pageSize 显示条数
      * @return java.util.List<com.zihuv.managebooks.entity.Admin>
      */
-    List<Admin> listAdmin();
+    List<Admin> listAdmin(Integer pageNum, Integer pageSize);
 
     /**
      * 修改管理员信息
@@ -44,7 +46,7 @@ public interface AdminService {
      *
      * @return java.util.List<com.zihuv.managebooks.entity.User>
      */
-    List<User> listUser();
+    List<User> listUser(Integer pageNum, Integer pageSize);
 
     /**
      * 根据id查询用户

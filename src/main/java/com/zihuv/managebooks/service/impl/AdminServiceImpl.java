@@ -1,11 +1,13 @@
 package com.zihuv.managebooks.service.impl;
 
+import com.github.pagehelper.PageHelper;
 import com.zihuv.managebooks.dao.AdminDao;
 import com.zihuv.managebooks.entity.Admin;
 import com.zihuv.managebooks.entity.User;
 import com.zihuv.managebooks.enums.UserAdminEnums;
 import com.zihuv.managebooks.exception.BizException;
 import com.zihuv.managebooks.service.AdminService;
+import com.zihuv.managebooks.utils.CommonUtils;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,9 +30,13 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public void register(Admin admin) {
         Admin a = adminDao.getAdminByAdminName(admin.getAdminName());
-        //若管理员名已经存在，u != null，不允许注册
+        //若管理员已经存在，a != null，不允许注册
         if (a != null) {
             throw new BizException(UserAdminEnums.ADMIN_IS_EXIST);
+        }
+        //判断邮箱格式是否合理
+        if (CommonUtils.checkEmailError(admin.getAdminEmail())) {
+            throw new BizException(UserAdminEnums.EMAIL_ERROR);
         }
         adminDao.insertAdmin(admin);
     }
@@ -44,22 +50,23 @@ public class AdminServiceImpl implements AdminService {
         }
         HttpSession session = request.getSession();
         //将登录信息存进session
-        session.setAttribute("admin",admin);
+        session.setAttribute("user",admin);
     }
 
     @Override
     public void exit() {
         HttpSession session = request.getSession();
-        Object admin = session.getAttribute("admin");
+        Object admin = session.getAttribute("user");
         //在session不存在管理员，说明没有管理员登录 admin == null
         if (admin == null) {
             throw new BizException(UserAdminEnums.ADMIN_NOT_LOGIN);
         }
-        session.removeAttribute("admin");
+        session.removeAttribute("user");
     }
 
     @Override
-    public List<Admin> listAdmin() {
+    public List<Admin> listAdmin(Integer pageNum, Integer pageSize) {
+        PageHelper.startPage(pageNum,pageSize);
         return adminDao.listAdmin();
     }
 
@@ -74,7 +81,8 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
-    public List<User> listUser() {
+    public List<User> listUser(Integer pageNum, Integer pageSize) {
+        PageHelper.startPage(pageNum,pageSize);
         return adminDao.listUser();
     }
 

@@ -8,10 +8,18 @@
         VALUES (null, #{bookName}, #{bookAuthor}, #{bookPublish}, #{bookCategory}, #{bookPrize},
                 #{bookIntroduction});
     </insert>
-    <select id="getBookById" resultType="int">
-        SELECT id
-        FROM book
-        WHERE id = #{id};
+    <select id="getBookById" resultType="com.zihuv.managebooks.entity.Book">
+        SELECT bk.id,
+               bk.book_name,
+               bk.book_author,
+               bk.book_publish,
+               bk.book_category,
+               bk.book_prize,
+               bk.book_introduction
+        FROM book as bk,
+             book_category as bc
+        WHERE bk.id = #{id}
+          AND bk.book_category = bc.id
     </select>
     <delete id="deleteBookById">
         DELETE
@@ -45,7 +53,42 @@
         </where>
     </update>
     <select id="listBook" resultType="com.zihuv.managebooks.entity.Book">
-        SELECT id, book_name, book_author, book_publish, book_category, book_prize, book_introduction
-        FROM book;
+        SELECT bk.id,
+               bk.book_name,
+               bk.book_author,
+               bk.book_publish,
+               bk.book_category,
+               bk.book_prize,
+               bk.book_introduction
+        FROM book AS bk,
+             book_category AS bc
+        WHERE bk.book_category = bc.id
     </select>
+    <select id="listBookByBookName" resultType="com.zihuv.managebooks.entity.Book">
+        SELECT bk.id,
+               bk.book_name,
+               bk.book_author,
+               bk.book_publish,
+               bk.book_category,
+               bk.book_prize,
+               bk.book_introduction
+        FROM book AS bk,
+             book_category AS bc
+        WHERE LOCATE(#{bookName}, book_name)
+          AND bk.book_category = bc.id
+    </select>
+    <select id="listBookByCategory" resultType="com.zihuv.managebooks.entity.Book">
+        SELECT bk.id,
+               bk.book_name,
+               bk.book_author,
+               bk.book_publish,
+               bk.book_category,
+               bk.book_prize,
+               bk.book_introduction
+        FROM book AS bk,
+             book_category AS bc
+        WHERE bc.category_name = #{categoryName}
+         AND  bk.book_category = bc.id
+    </select>
+
 </mapper>

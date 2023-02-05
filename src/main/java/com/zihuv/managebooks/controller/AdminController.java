@@ -20,7 +20,6 @@ import java.util.List;
 public class AdminController {
     @Autowired
     private AdminService adminService;
-
     @Autowired
     private UserService userService;
 
@@ -62,11 +61,13 @@ public class AdminController {
     /**
      * 查询所有管理员
      *
-     * @return com.zihuv.managebooks.vo.Result<?>
+     * @param pageNum 页码
+     * @param pageSize 显示条数
+     * @return com.zihuv.managebooks.vo.Result<java.util.List < com.zihuv.managebooks.entity.Admin>>
      */
     @GetMapping("/admin")
-    public Result<?> listAdmin() {
-        List<Admin> admins = adminService.listAdmin();
+    public Result<List<Admin>> listAdmin(@RequestParam Integer pageNum, @RequestParam Integer pageSize) {
+        List<Admin> admins = adminService.listAdmin(pageNum, pageSize);
         return Result.success(admins);
     }
 
@@ -85,11 +86,11 @@ public class AdminController {
     /**
      * 查询所有用户
      *
-     * @return com.zihuv.managebooks.vo.Result<java.util.List<com.zihuv.managebooks.entity.User>>
+     * @return com.zihuv.managebooks.vo.Result<java.util.List < com.zihuv.managebooks.entity.User>>
      */
     @GetMapping("/admin/user")
-    public Result<List<User>> listUser() {
-        List<User> users = adminService.listUser();
+    public Result<List<User>> listUser(@RequestParam Integer pageNum, @RequestParam Integer pageSize) {
+        List<User> users = adminService.listUser(pageNum, pageSize);
         return Result.success(users);
     }
 

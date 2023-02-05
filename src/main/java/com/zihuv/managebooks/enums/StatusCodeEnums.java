@@ -32,6 +32,7 @@ public enum StatusCodeEnums {
      */
     VALID_ERROR(50001, "参数格式不正确");
 
+
     private Integer code;
     private String message;
 }

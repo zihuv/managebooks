@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zihuv.managebooks.dao.BorrowBookDao">
+    <insert id="insertBorrowBook">
+        INSERT INTO borrow_book(id, user_id, book_id, borrow_date)
+        VALUES (NULL, #{userId}, #{bookId}, #{borrowDate});
+    </insert>
+    <delete id="deleteBorrowBook">
+        DELETE
+        FROM borrow_book
+        WHERE user_id = #{userId}
+          AND book_id = #{bookId};
+    </delete>
+    <select id="getBorrowBookByBookId" resultType="com.zihuv.managebooks.entity.BorrowBook">
+        SELECT id, user_id, book_id, borrow_date
+        FROM borrow_book
+        WHERE book_id = #{bookId}
+    </select>
+    <select id="listBorrowBookByUserId" resultType="com.zihuv.managebooks.entity.BorrowBook">
+        SELECT id, user_id, book_id, borrow_date
+        FROM borrow_book
+        WHERE user_id = #{userId}
+    </select>
+    <select id="listAllBorrowBook" resultType="com.zihuv.managebooks.entity.BorrowBook">
+        SELECT id, user_id, book_id, borrow_date
+        FROM borrow_book
+        UNION
+        SELECT id, user_id, book_id, borrow_date
+        FROM borrow_book_backup
+        ORDER BY id
+    </select>
+    <select id="listBorrowBook" resultType="com.zihuv.managebooks.entity.BorrowBook">
+        SELECT id, user_id, book_id, borrow_date
+        FROM borrow_book
+        WHERE user_id = #{userId}
+    </select>
+</mapper>

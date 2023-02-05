@@ -10,7 +10,7 @@
     <select id="getCategoryByCategoryName" resultType="java.lang.String">
         SELECT category_name
         FROM book_category
-        WHERE category_name = #{categoryName};
+        WHERE category_name = #{categoryName}
     </select>
     <delete id="deleteCategoryById">
         DELETE
@@ -20,7 +20,18 @@
     <select id="getCategoryById" resultType="java.lang.Integer">
         SELECT id
         FROM book_category
-        WHERE id = #{id};
+        WHERE id = #{id}
+    </select>
+    <select id="listCategory" resultType="com.zihuv.managebooks.entity.BookCategory">
+        SELECT id, category_name
+        FROM book_category
+        ORDER BY id
+    </select>
+    <select id="listCategoryAmount" resultType="com.zihuv.managebooks.vo.BookCategoryAmountVO">
+        SELECT bc.id, bc.category_name, COUNT(bk.book_category) AS amount
+        FROM book_category AS bc
+                 LEFT OUTER JOIN book AS bk on bc.id = bk.book_category
+        GROUP BY bc.id, bc.category_name
     </select>
 
 </mapper>

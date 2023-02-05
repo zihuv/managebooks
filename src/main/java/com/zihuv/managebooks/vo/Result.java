@@ -59,9 +59,9 @@ public class Result<T> {
     /**
      * 生成Result对象
      *
-     * @param code
-     * @param message
-     * @param data
+     * @param code    返回码
+     * @param message 返回信息
+     * @param data    返回数据
      * @return com.zihuv.managebooks.vo.Result<T>
      */
     private static <T> Result<T> makeResult(Integer code, String message, T data) {

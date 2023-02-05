@@ -6,7 +6,7 @@
     <select id="getUserByUserName" resultType="com.zihuv.managebooks.entity.User">
         SELECT id, user_name, user_password, user_email
         FROM user
-        WHERE user_name = #{userName};
+        WHERE user_name = #{userName}
     </select>
     <insert id="insertUser">
         INSERT INTO user(id, user_name, user_password, user_email)
@@ -32,6 +32,6 @@
     <select id="getUserById" resultType="com.zihuv.managebooks.entity.User">
         SELECT id, user_name, user_password, user_email
         FROM user
-        WHERE id = #{id};
+        WHERE id = #{id}
     </select>
 </mapper>

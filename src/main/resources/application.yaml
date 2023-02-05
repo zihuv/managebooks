@@ -10,3 +10,7 @@ mybatis:
   mapper-locations: classpath:mapper/*.xml
   configuration:
     mapUnderscoreToCamelCase: true
+
+#pagehelper分页插件配置
+pagehelper:
+  helperDialect: mysql

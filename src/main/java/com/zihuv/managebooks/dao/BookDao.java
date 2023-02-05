@@ -1,8 +1,8 @@
 package com.zihuv.managebooks.dao;
 
 import com.zihuv.managebooks.entity.Book;
+import com.zihuv.managebooks.vo.BookVO;
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -23,12 +23,12 @@ public interface BookDao {
     int insertBook(Book book);
 
     /**
-     * 根据id获取书籍id
+     * 根据id查询书籍
      *
      * @param id 书籍id
-     * @return int
+     * @return com.zihuv.managebooks.entity.Book
      */
-    int getBookById(Integer id);
+    Book getBookById(Integer id);
 
     /**
      * 根据id删除书籍
@@ -49,9 +49,17 @@ public interface BookDao {
     /**
      * 获取所有书籍信息
      *
-     * @return java.util.List<com.zihuv.managebooks.entity.Book>
+     * @return java.util.List<com.zihuv.managebooks.vo.BookVO>
      */
     List<Book> listBook();
 
+    /**
+     * 根据书名查询书籍
+     *
+     * @param bookName 书籍名称
+     * @return java.util.List<com.zihuv.managebooks.vo.BookVO>
+     */
+    List<Book> listBookByBookName(String bookName);
 
+    List<Book> listBookByCategory(String categoryName);
 }

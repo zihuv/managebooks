@@ -6,7 +6,7 @@
     <select id="getAdminByAdminName" resultType="com.zihuv.managebooks.entity.Admin">
         SELECT id, admin_name, admin_password, admin_email
         FROM Admin
-        WHERE admin_name = #{adminName};
+        WHERE admin_name = #{adminName}
     </select>
     <insert id="insertAdmin">
         INSERT INTO admin(id, admin_name, admin_password, admin_email)
@@ -14,7 +14,7 @@
     </insert>
     <select id="listAdmin" resultType="com.zihuv.managebooks.entity.Admin">
         SELECT id, admin_name, admin_password, admin_email
-        FROM admin;
+        FROM admin
     </select>
     <update id="updateAdmin">
         UPDATE admin
@@ -36,16 +36,16 @@
     <select id="getAdminById" resultType="com.zihuv.managebooks.entity.Admin">
         SELECT id, admin_name, admin_password, admin_email
         FROM admin
-        WHERE id = #{id};
+        WHERE id = #{id}
     </select>
     <select id="listUser" resultType="com.zihuv.managebooks.entity.User">
         SELECT id, user_name, user_password, user_email
-        FROM user;
+        FROM user
     </select>
     <select id="getUserById" resultType="com.zihuv.managebooks.entity.User">
         SELECT id, user_name, user_password, user_email
         FROM user
-        WHERE id = #{id};
+        WHERE id = #{id}
     </select>
     <insert id="insertUser">
         INSERT INTO user(id, user_name, user_password, user_email)
