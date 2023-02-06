@@ -31,9 +31,4 @@
         FROM borrow_book_backup
         ORDER BY id
     </select>
-    <select id="listBorrowBook" resultType="com.zihuv.managebooks.entity.BorrowBook">
-        SELECT id, user_id, book_id, borrow_date
-        FROM borrow_book
-        WHERE user_id = #{userId}
-    </select>
 </mapper>

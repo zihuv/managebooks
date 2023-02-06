@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zihuv.managebooks.dao.OperationLogDao">
+    <insert id="insertOperationLog">
+        INSERT INTO operation_log(id, username, description, class_name, method_name, uri, params, create_date)
+        VALUES (null, #{username}, #{description}, #{className}, #{methodName}, #{uri}, #{params}, #{createDate});
+    </insert>
+    <delete id="deleteOperationLog">
+        DELETE FROM operation_log WHERE id IN
+        <foreach collection="ids" open="(" close=")" separator="," item="id">
+            #{id}
+        </foreach>
+    </delete>
+    <select id="listOperationLog" resultType="com.zihuv.managebooks.entity.OperationLog">
+        SELECT id,
+               username,
+               description,
+               class_name,
+               method_name,
+               uri,
+               params,
+               create_date
+        FROM operation_log
+    </select>
+</mapper>

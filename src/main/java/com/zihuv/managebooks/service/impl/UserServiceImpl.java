@@ -1,5 +1,6 @@
 package com.zihuv.managebooks.service.impl;
 
+import com.zihuv.managebooks.constant.IdentityConst;
 import com.zihuv.managebooks.dao.UserDao;
 import com.zihuv.managebooks.entity.User;
 import com.zihuv.managebooks.enums.UserAdminEnums;
@@ -11,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
+ * 用户管理
+ *
  * @author: zihuv
  * @date: 2023/1/23
  */
@@ -43,7 +46,7 @@ public class UserServiceImpl implements UserService {
             throw new BizException(UserAdminEnums.USER_INFO_ERROR);
         }
         //将登录信息存进session
-        session.setAttribute("user",user);
+        session.setAttribute(IdentityConst.LOGIN_INFO,user);
     }
 
     @Override
@@ -53,7 +56,7 @@ public class UserServiceImpl implements UserService {
         if (user == null) {
             throw new BizException(UserAdminEnums.USER_NOT_LOGIN);
         }
-        session.removeAttribute("user");
+        session.removeAttribute(IdentityConst.LOGIN_INFO);
     }
 
     @Override

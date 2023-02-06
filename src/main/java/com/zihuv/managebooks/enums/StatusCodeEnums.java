@@ -28,9 +28,9 @@ public enum StatusCodeEnums {
     SYSTEM_ERROR(40404,"系统异常"),
 
     /**
-     * 参数校验失败
+     * 请求参数错误
      */
-    VALID_ERROR(50001, "参数格式不正确");
+    PARAM_ERROR(50001, "请求参数错误");
 
 
     private Integer code;

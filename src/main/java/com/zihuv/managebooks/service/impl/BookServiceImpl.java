@@ -16,6 +16,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
+ * 书籍管理
+ *
  * @author: zihuv
  * @date: 2023/1/21
  */
@@ -23,7 +25,6 @@ import java.util.stream.Collectors;
 public class BookServiceImpl implements BookService {
     @Autowired
     private BookDao bookDao;
-
     @Autowired
     private BorrowBookDao borrowBookDao;
 
@@ -35,7 +36,7 @@ public class BookServiceImpl implements BookService {
     @Override
     public void deleteBookById(Integer id) {
         Book bk = bookDao.getBookById(id);
-        //判断所删除的书籍是否存在，若不存在，无法删除，bk==null，抛出异常
+        //判断所删除的书籍是否存在，若不存在，无法删除
         if (bk == null) {
             throw new BizException(BookStatusEnums.BOOK_NOT_EXIST);
         }
@@ -45,7 +46,7 @@ public class BookServiceImpl implements BookService {
     @Override
     public void updateBook(Book book) {
         Book bk = bookDao.getBookById(book.getId());
-        //判断所修改的书籍是否存在，若不存在，无法修改，bk==null，抛出异常
+        //判断所修改的书籍是否存在，若不存在，无法修改
         if (bk == null) {
             throw new BizException(BookStatusEnums.BOOK_NOT_EXIST);
         }
@@ -78,7 +79,7 @@ public class BookServiceImpl implements BookService {
     @Override
     public List<BookVO> listBookByCategory(String categoryName,Integer pageNum, Integer pageSize) {
         PageHelper.startPage(pageNum,pageSize);
-        return bookDao.listBookByCategory(categoryName)
+        return bookDao.listBookByCategoryName(categoryName)
                 .stream()
                 .map(this::bookToVo)
                 .collect(Collectors.toList());

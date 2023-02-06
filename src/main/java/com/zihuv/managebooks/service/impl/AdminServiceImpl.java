@@ -1,6 +1,7 @@
 package com.zihuv.managebooks.service.impl;
 
 import com.github.pagehelper.PageHelper;
+import com.zihuv.managebooks.constant.IdentityConst;
 import com.zihuv.managebooks.dao.AdminDao;
 import com.zihuv.managebooks.entity.Admin;
 import com.zihuv.managebooks.entity.User;
@@ -16,6 +17,8 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 /**
+ * 管理员管理
+ *
  * @author: zihuv
  * @date: 2023/1/23
  */
@@ -23,7 +26,6 @@ import java.util.List;
 public class AdminServiceImpl implements AdminService {
     @Autowired
     private AdminDao adminDao;
-
     @Autowired
     HttpServletRequest request;
 
@@ -50,18 +52,18 @@ public class AdminServiceImpl implements AdminService {
         }
         HttpSession session = request.getSession();
         //将登录信息存进session
-        session.setAttribute("user",admin);
+        session.setAttribute(IdentityConst.LOGIN_INFO,admin);
     }
 
     @Override
     public void exit() {
         HttpSession session = request.getSession();
-        Object admin = session.getAttribute("user");
+        Object admin = session.getAttribute(IdentityConst.LOGIN_INFO);
         //在session不存在管理员，说明没有管理员登录 admin == null
         if (admin == null) {
             throw new BizException(UserAdminEnums.ADMIN_NOT_LOGIN);
         }
-        session.removeAttribute("user");
+        session.removeAttribute(IdentityConst.LOGIN_INFO);
     }
 
     @Override

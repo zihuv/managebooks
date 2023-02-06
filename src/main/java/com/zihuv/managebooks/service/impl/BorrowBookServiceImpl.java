@@ -20,6 +20,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
+ * 借书管理
+ *
  * @author: zihuv
  * @date: 2023/1/29
  */
@@ -72,9 +74,9 @@ public class BorrowBookServiceImpl implements BorrowBookService {
     }
 
     @Override
-    public List<BorrowBookVO> listBorrowBook(Integer userId,Integer pageNum, Integer pageSize) {
+    public List<BorrowBookVO> listBorrowBookByUserId(Integer userId,Integer pageNum, Integer pageSize) {
         PageHelper.startPage(pageNum, pageSize);
-        return borrowBookDao.listBorrowBook(userId)
+        return borrowBookDao.listBorrowBookByUserId(userId)
                 .stream()
                 .map(this::borrowBookToVO)
                 .collect(Collectors.toList());

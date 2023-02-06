@@ -4,6 +4,8 @@ import com.zihuv.managebooks.entity.User;
 import org.apache.ibatis.annotations.Mapper;
 
 /**
+ * 用户管理
+ *
  * @author: zihuv
  * @date: 2023/1/23
  */
@@ -12,7 +14,7 @@ public interface UserDao {
     /**
      * 根据用户名查询用户
      *
-     * @param userName
+     * @param userName 用户名
      * @return com.zihuv.managebooks.entity.User
      */
     User getUserByUserName(String userName);
@@ -20,7 +22,7 @@ public interface UserDao {
     /**
      * 添加用户
      *
-     * @param user
+     * @param user 用户信息
      * @return int
      */
     int insertUser(User user);
@@ -28,7 +30,7 @@ public interface UserDao {
     /**
      * 修改用户信息
      *
-     * @param user
+     * @param user 用户信息
      * @return int
      */
     int updateUser(User user);
@@ -36,7 +38,7 @@ public interface UserDao {
     /**
      * 根据id查询用户
      *
-     * @param id
+     * @param id 用户id
      * @return com.zihuv.managebooks.entity.User
      */
     User getUserById(Integer id);

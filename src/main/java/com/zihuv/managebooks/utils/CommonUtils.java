@@ -1,5 +1,7 @@
 package com.zihuv.managebooks.utils;
 
+import com.zihuv.managebooks.constant.IdentityConst;
+import com.zihuv.managebooks.enums.StatusCodeEnums;
 import com.zihuv.managebooks.enums.UserAdminEnums;
 import com.zihuv.managebooks.exception.BizException;
 import jakarta.servlet.http.HttpSession;
@@ -22,7 +24,7 @@ public class CommonUtils {
      * @return java.lang.Object
      */
     public static <T> Object checkLogin(Class<T> t, HttpSession session) {
-        Object u = session.getAttribute("user");
+        Object u = session.getAttribute(IdentityConst.LOGIN_INFO);
         //u==null 说明用户没登录
         if (u == null) {
             throw new BizException(UserAdminEnums.USER_NOT_LOGIN);
@@ -45,5 +47,17 @@ public class CommonUtils {
         Pattern p = Pattern.compile(rule);
         Matcher m = p.matcher(email);
         return !m.matches();
+    }
+
+    /**
+     * 检查页码和显示条数的数据是否合法
+     *
+     * @param pageNum 页码
+     * @param pageSize 显示条数
+     */
+    public static void checkPageNumAndSize(Integer pageNum,Integer pageSize) {
+        if (pageNum == null || pageSize == null || pageNum < 0 || pageSize < 0) {
+            throw new BizException(StatusCodeEnums.PARAM_ERROR);
+        }
     }
 }

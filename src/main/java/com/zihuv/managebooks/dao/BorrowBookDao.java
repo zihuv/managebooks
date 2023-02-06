@@ -1,12 +1,13 @@
 package com.zihuv.managebooks.dao;
 
 import com.zihuv.managebooks.entity.BorrowBook;
-import com.zihuv.managebooks.vo.BorrowBookVO;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
 
 /**
+ * 借书管理
+ *
  * @author: zihuv
  * @date: 2023/1/29
  */
@@ -38,7 +39,7 @@ public interface BorrowBookDao {
     BorrowBook getBorrowBookByBookId(Integer bookId);
 
     /**
-     * 根据用户id查询书籍
+     * 根据用户id查询借书记录
      *
      * @param userId 用户id
      * @return java.util.List<com.zihuv.managebooks.entity.BorrowBook>
@@ -51,6 +52,4 @@ public interface BorrowBookDao {
      * @return java.util.List<com.zihuv.managebooks.vo.BorrowBookVO>
      */
     List<BorrowBook> listAllBorrowBook();
-
-    List<BorrowBook> listBorrowBook(Integer userId);
 }

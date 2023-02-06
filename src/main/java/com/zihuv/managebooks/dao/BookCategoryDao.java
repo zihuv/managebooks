@@ -5,9 +5,10 @@ import com.zihuv.managebooks.vo.BookCategoryAmountVO;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
-import java.util.Map;
 
 /**
+ * 书籍类别管理
+ *
  * @author: zihuv
  * @date: 2023/1/23
  */

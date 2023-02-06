@@ -7,15 +7,17 @@ import org.apache.ibatis.annotations.Mapper;
 import java.util.List;
 
 /**
+ * 管理员管理
+ *
  * @author: zihuv
  * @date: 2023/1/23
  */
 @Mapper
 public interface AdminDao {
     /**
-     * 根据管理员名查询用户
+     * 根据管理员名查询管理员
      *
-     * @param adminName
+     * @param adminName 管理员名称
      * @return com.zihuv.managebooks.entity.Admin
      */
     Admin getAdminByAdminName(String adminName);
@@ -23,13 +25,13 @@ public interface AdminDao {
     /**
      * 添加管理员
      *
-     * @param admin
+     * @param admin 管理员信息
      * @return int
      */
     int insertAdmin(Admin admin);
 
     /**
-     * 获取所有管理员
+     * 查询所有管理员
      *
      * @return java.util.List<com.zihuv.managebooks.entity.Admin>
      */
@@ -38,7 +40,7 @@ public interface AdminDao {
     /**
      * 修改管理员信息
      *
-     * @param admin
+     * @param admin 管理员信息
      * @return int
      */
     int updateAdmin(Admin admin);
@@ -46,7 +48,7 @@ public interface AdminDao {
     /**
      * 根据id查询管理员
      *
-     * @param id
+     * @param id 管理员id
      * @return com.zihuv.managebooks.entity.Admin
      */
     Admin getAdminById(Integer id);
@@ -61,7 +63,7 @@ public interface AdminDao {
     /**
      * 根据id查询用户
      *
-     * @param id
+     * @param id 用户id
      * @return com.zihuv.managebooks.entity.User
      */
     User getUserById(Integer id);
@@ -69,7 +71,7 @@ public interface AdminDao {
     /**
      * 添加用户
      *
-     * @param user
+     * @param user 用户信息
      * @return int
      */
     int insertUser(User user);

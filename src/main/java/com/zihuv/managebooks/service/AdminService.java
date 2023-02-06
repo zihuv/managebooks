@@ -9,14 +9,14 @@ public interface AdminService {
     /**
      * 管理员注册
      *
-     * @param admin
+     * @param admin 管理员信息
      */
     void register(Admin admin);
 
     /**
      * 管理员登录
      *
-     * @param admin
+     * @param admin 管理员信息
      */
     void login(Admin admin);
 
@@ -37,14 +37,16 @@ public interface AdminService {
     /**
      * 修改管理员信息
      *
-     * @param admin
+     * @param admin 管理员信息
      */
     void updateAdmin(Admin admin);
 
     /**
      * 查询所有用户
      *
-     * @return java.util.List<com.zihuv.managebooks.entity.User>
+     * @param pageNum 页码
+     * @param pageSize 显示条数
+     * @return com.zihuv.managebooks.vo.Result<java.util.List<com.zihuv.managebooks.entity.User>>
      */
     List<User> listUser(Integer pageNum, Integer pageSize);
 

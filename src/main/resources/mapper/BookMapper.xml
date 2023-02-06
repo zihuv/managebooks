@@ -77,7 +77,7 @@
         WHERE LOCATE(#{bookName}, book_name)
           AND bk.book_category = bc.id
     </select>
-    <select id="listBookByCategory" resultType="com.zihuv.managebooks.entity.Book">
+    <select id="listBookByCategoryName" resultType="com.zihuv.managebooks.entity.Book">
         SELECT bk.id,
                bk.book_name,
                bk.book_author,
@@ -89,6 +89,19 @@
              book_category AS bc
         WHERE bc.category_name = #{categoryName}
          AND  bk.book_category = bc.id
+    </select>
+    <select id="listBookByCategoryId" resultType="com.zihuv.managebooks.entity.Book">
+        SELECT bk.id,
+               bk.book_name,
+               bk.book_author,
+               bk.book_publish,
+               bk.book_category,
+               bk.book_prize,
+               bk.book_introduction
+        FROM book AS bk,
+             book_category AS bc
+        WHERE bc.id = #{id}
+          AND  bk.book_category = bc.id
     </select>
 
 </mapper>

@@ -2,23 +2,15 @@ package com.zihuv.managebooks.service;
 
 
 import com.zihuv.managebooks.entity.Book;
-import com.zihuv.managebooks.entity.User;
 import com.zihuv.managebooks.vo.BookVO;
 
 import java.util.List;
-
-/**
- * 书籍管理
- *
- * @author: zihuv
- * @date: 2023/1/20
- */
 
 public interface BookService {
     /**
      * 添加书籍
      *
-     * @param book 书籍对象
+     * @param book 书籍信息
      */
     void insertBook(Book book);
 
@@ -32,15 +24,15 @@ public interface BookService {
     /**
      * 修改书籍信息
      *
-     * @param book 书籍对象
+     * @param book 书籍信息
      */
     void updateBook(Book book);
 
     /**
      * 查询所有书籍
      *
-     * @param pageNum
-     * @param pageSize
+     * @param pageNum 页码
+     * @param pageSize 显示条数
      * @return java.util.List<com.zihuv.managebooks.vo.BookVO>
      */
     List<BookVO> listBook(Integer pageNum, Integer pageSize);
@@ -48,7 +40,7 @@ public interface BookService {
     /**
      * 根据id查询书籍
      *
-     * @param id
+     * @param id 书籍id
      * @return com.zihuv.managebooks.entity.Book
      */
     BookVO getBookById(Integer id);
@@ -56,10 +48,20 @@ public interface BookService {
     /**
      * 根据书名查询书籍
      *
-     * @param bookName
+     * @param bookName 书籍名称
+     * @param pageNum 页码
+     * @param pageSize 显示条数
      * @return java.util.List<com.zihuv.managebooks.vo.BookVO>
      */
     List<BookVO> listBookByBookName(String bookName,Integer pageNum, Integer pageSize);
 
+    /**
+     * 根据书籍类别查询书籍
+     *
+     * @param categoryName 书籍类别名称
+     * @param pageNum 页码
+     * @param pageSize 显示条数
+     * @return java.util.List<com.zihuv.managebooks.vo.BookVO>
+     */
     List<BookVO> listBookByCategory(String categoryName,Integer pageNum, Integer pageSize);
 }

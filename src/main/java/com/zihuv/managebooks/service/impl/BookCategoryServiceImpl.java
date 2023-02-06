@@ -2,6 +2,8 @@ package com.zihuv.managebooks.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.zihuv.managebooks.dao.BookCategoryDao;
+import com.zihuv.managebooks.dao.BookDao;
+import com.zihuv.managebooks.entity.Book;
 import com.zihuv.managebooks.entity.BookCategory;
 import com.zihuv.managebooks.enums.BookStatusEnums;
 import com.zihuv.managebooks.exception.BizException;
@@ -14,6 +16,8 @@ import java.util.List;
 import java.util.Map;
 
 /**
+ * 书籍类别管理
+ *
  * @author: zihuv
  * @date: 2023/1/23
  */
@@ -21,6 +25,8 @@ import java.util.Map;
 public class BookCategoryServiceImpl implements BookCategoryService {
     @Autowired
     private BookCategoryDao bookCategoryDao;
+    @Autowired
+    private BookDao bookDao;
 
     @Override
     public void insertCategory(String categoryName) {
@@ -40,6 +46,12 @@ public class BookCategoryServiceImpl implements BookCategoryService {
         //判断所删除的类别是否已经存在，若不存在，无法删除，result==0，抛出异常
         if (result == 0) {
             throw new BizException(BookStatusEnums.CATEGORY_NOT_EXIST);
+        }
+        //判断该书籍类别是否在book表当中已经被使用
+        //若该书籍类别已经被使用不允许直接删除该书籍类别
+        List<Book> books = bookDao.listBookByCategoryId(id);
+        if (books != null) {
+            throw new BizException(BookStatusEnums.CATEGORY_IS_USED);
         }
         bookCategoryDao.deleteCategoryById(id);
     }
