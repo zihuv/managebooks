@@ -12,15 +12,15 @@
 
 ### 二、技术介绍
 
-**1.前端：**~~大脑映射~~
+**1.前端：** ~~大脑映射~~
 
-**2.后端：**SpringBoot，Mybatis，druid，lombok，PageHelper
+**2.后端：** SpringBoot，Mybatis，druid，lombok，PageHelper
 
-**3.开发环境：**SpringBoot 3.0.1，Java 17，Maven 3.6.1
+**3.开发环境：** SpringBoot 3.0.1，Java 17，Maven 3.6.1
 
-**4.数据库：**MySQL 5.7
+**4.数据库：** MySQL 5.7
 
-**5.辅助工具：**smart-doc，Postman
+**5.辅助工具：** smart-doc，Postman
 
 
 
