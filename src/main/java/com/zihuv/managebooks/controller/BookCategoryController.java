@@ -42,7 +42,7 @@ public class BookCategoryController {
      * @return com.zihuv.managebooks.vo.Result<?>
      */
     @OptLog(value = "删除书籍类别")
-    @PutMapping("/category/{id}")
+    @DeleteMapping("/category/{id}")
     public Result<?> deleteCategoryById(@PathVariable Integer id) {
         bookCategoryService.deleteCategoryById(id);
         return Result.success();

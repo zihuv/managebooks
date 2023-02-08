@@ -13,7 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * 书籍类别管理
@@ -32,9 +31,9 @@ public class BookCategoryServiceImpl implements BookCategoryService {
     public void insertCategory(String categoryName) {
         //去除字符串中的空格（首尾和字符串中间的空格）
         categoryName = categoryName.replace(" ", "");
-        String result = bookCategoryDao.getCategoryByCategoryName(categoryName);
-        //判断所添加的类别是否已经存在，若存在，无法添加，result!=null，抛出异常
-        if (result != null) {
+        BookCategory category = bookCategoryDao.getCategoryByCategoryName(categoryName);
+        //判断所添加的类别是否已经存在，若存在，无法添加
+        if (category != null) {
             throw new BizException(BookStatusEnums.CATEGORY_IS_EXIST);
         }
         bookCategoryDao.insertCategory(categoryName);
@@ -42,17 +41,18 @@ public class BookCategoryServiceImpl implements BookCategoryService {
 
     @Override
     public void deleteCategoryById(Integer id) {
-        int result = bookCategoryDao.getCategoryById(id);
-        //判断所删除的类别是否已经存在，若不存在，无法删除，result==0，抛出异常
-        if (result == 0) {
+        BookCategory category = bookCategoryDao.getCategoryById(id);
+        //判断所删除的类别是否存在，若不存在，无法删除
+        if (category == null) {
             throw new BizException(BookStatusEnums.CATEGORY_NOT_EXIST);
         }
         //判断该书籍类别是否在book表当中已经被使用
         //若该书籍类别已经被使用不允许直接删除该书籍类别
         List<Book> books = bookDao.listBookByCategoryId(id);
-        if (books != null) {
+        if (!"[]".equals(String.valueOf(books))) {
             throw new BizException(BookStatusEnums.CATEGORY_IS_USED);
         }
+        //删除书籍类别
         bookCategoryDao.deleteCategoryById(id);
     }
 

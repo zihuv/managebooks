@@ -10,8 +10,23 @@ import lombok.Data;
  */
 @Data
 public class Admin {
+    /**
+     * 管理员id
+     */
     private Integer id;
+
+    /**
+     * 管理员名
+     */
     private String adminName;
+
+    /**
+     * 管理员密码
+     */
     private String adminPassword;
+
+    /**
+     * 管理员邮箱
+     */
     private String adminEmail;
 }

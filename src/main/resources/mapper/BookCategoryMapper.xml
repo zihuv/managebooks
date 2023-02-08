@@ -4,11 +4,11 @@
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.zihuv.managebooks.dao.BookCategoryDao">
     <insert id="insertCategory">
-        INSERT INTO book_category
-        SET category_name = #{categoryName};
+        INSERT INTO book_category(id, category_name)
+        VALUES (null, #{categoryName});
     </insert>
-    <select id="getCategoryByCategoryName" resultType="java.lang.String">
-        SELECT category_name
+    <select id="getCategoryByCategoryName" resultType="com.zihuv.managebooks.entity.BookCategory">
+        SELECT id, category_name
         FROM book_category
         WHERE category_name = #{categoryName}
     </select>
@@ -17,8 +17,8 @@
         FROM book_category
         WHERE id = #{id};
     </delete>
-    <select id="getCategoryById" resultType="java.lang.Integer">
-        SELECT id
+    <select id="getCategoryById" resultType="com.zihuv.managebooks.entity.BookCategory">
+        SELECT id, category_name
         FROM book_category
         WHERE id = #{id}
     </select>

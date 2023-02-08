@@ -10,6 +10,13 @@ import lombok.Data;
  */
 @Data
 public class BookCategory {
+    /**
+     * 书籍类别id
+     */
     private Integer id;
+
+    /**
+     * 书籍类别名称
+     */
     private String categoryName;
 }

@@ -12,14 +12,44 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public enum UserAdminEnums {
+    /**
+     * 该用户已经存在
+     */
     USER_IS_EXIST(10000,"该用户已经存在"),
+
+    /**
+     * 该用户不存在
+     */
     USER_NOT_EXIST(10001,"该用户不存在"),
+
+    /**
+     * 当前没有用户登录
+     */
     USER_NOT_LOGIN(11000,"当前没有用户登录"),
+
+    /**
+     * 用户名或密码不存在
+     */
     USER_INFO_ERROR(12000,"用户名或密码不存在"),
 
+    /**
+     * 该管理员已经存在
+     */
     ADMIN_IS_EXIST(20000,"该管理员已经存在"),
+
+    /**
+     * 该管理员不存在
+     */
     ADMIN_NOT_EXIST(20001,"该管理员不存在"),
+
+    /**
+     * 当前没有管理员登录
+     */
     ADMIN_NOT_LOGIN(21000,"当前没有管理员登录"),
+
+    /**
+     * 管理员名或密码不存在
+     */
     ADMIN_INFO_ERROR(22000,"管理员名或密码不存在"),
 
     /**
@@ -27,6 +57,9 @@ public enum UserAdminEnums {
      */
     IDENTITY_ERROR(30000,"登录身份错误，切换用户身份后再试"),
 
+    /**
+     * 邮箱格式错误
+     */
     EMAIL_ERROR(31000,"邮箱格式错误");
 
     private Integer code;

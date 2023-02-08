@@ -51,7 +51,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void exit() {
-        Object user = session.getAttribute("user");
+        Object user = session.getAttribute(IdentityConst.LOGIN_INFO);
         //在session不存在用户，说明没有用户登录 user == null
         if (user == null) {
             throw new BizException(UserAdminEnums.USER_NOT_LOGIN);

@@ -37,7 +37,7 @@ public class OperationLogController {
     }
 
     /**
-     * 根据id删除日志
+     * 根据id集合删除日志
      *
      * @param ids 所要删除的日志id集合
      * @return com.zihuv.managebooks.vo.Result<?>

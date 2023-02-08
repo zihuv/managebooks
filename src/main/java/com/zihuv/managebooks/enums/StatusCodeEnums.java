@@ -13,12 +13,12 @@ import lombok.Getter;
 @AllArgsConstructor
 public enum StatusCodeEnums {
     /**
-     * 成功
+     * 操作成功
      */
     SUCCESS(20000, "操作成功"),
 
     /**
-     * 失败
+     * 操作失败
      */
     ERROR(40001, "操作失败"),
 

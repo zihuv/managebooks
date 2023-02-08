@@ -40,6 +40,10 @@ public class BookServiceImpl implements BookService {
         if (bk == null) {
             throw new BizException(BookStatusEnums.BOOK_NOT_EXIST);
         }
+        //判断书籍是否在借书表中被借
+        if (borrowBookDao.getBorrowBookByBookId(id) != null) {
+            throw new BizException(BookStatusEnums.BOOK_IS_BORROWED);
+        }
         bookDao.deleteBookById(id);
     }
 

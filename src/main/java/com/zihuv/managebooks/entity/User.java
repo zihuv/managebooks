@@ -10,8 +10,23 @@ import lombok.Data;
  */
 @Data
 public class User {
+    /**
+     * 用户id
+     */
     private Integer id;
+
+    /**
+     * 用户名
+     */
     private String userName;
+
+    /**
+     * 用户密码
+     */
     private String userPassword;
+
+    /**
+     * 用户邮箱
+     */
     private String userEmail;
 }

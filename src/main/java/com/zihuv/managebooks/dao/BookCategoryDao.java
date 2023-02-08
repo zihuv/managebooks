@@ -28,7 +28,7 @@ public interface BookCategoryDao {
      * @param categoryName 书籍类型名称
      * @return java.lang.String
      */
-    String getCategoryByCategoryName(String categoryName);
+    BookCategory getCategoryByCategoryName(String categoryName);
 
     /**
      * 根据id删除书籍类别
@@ -44,7 +44,7 @@ public interface BookCategoryDao {
      * @param id 书籍类别id
      * @return int
      */
-    int getCategoryById(Integer id);
+    BookCategory getCategoryById(Integer id);
 
     /**
      * 查询所有书籍类别
