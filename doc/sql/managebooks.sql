@@ -157,7 +157,7 @@ CREATE TABLE `operation_log`  (
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `operation_log_id_uindex`(`id`) USING BTREE,
   INDEX `date_time_index`(`create_date`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '操作日志' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '操作日志' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of operation_log
