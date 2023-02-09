@@ -8,10 +8,8 @@
 
 3.将doc/api-doc-postman/managebooks.json导入Postman，并使用Postman测试接口
 
-### 二、文件介绍
-![文件介绍](./doc/images/微信图片编辑_20230208152455.jpg)
 
-### 三、技术介绍
+### 二、技术介绍
 
 **1.前端：** ~~大脑映射~~
 
@@ -22,6 +20,11 @@
 **4.数据库：** MySQL 5.7
 
 **5.辅助工具：** smart-doc，Postman
+
+
+### 三、文件介绍
+![文件介绍](./doc/images/微信图片编辑_20230208152455.jpg)
+
 
 
 
@@ -93,8 +96,9 @@ mybatis动态sql，修改给出的参数的信息，不修改未给出的参数�
 
 
 
-**ps:** borrow_book_backup是用于记录borrow_book中所删除的数据的表，使用触发器实现
-
+**ps:** 
+1.borrow_book_backup是用于记录borrow_book中所删除的数据的表，使用触发器实现
+2.operation_log的create_time字段使用了索引，提高查询效率
 
 
 ### 五、项目特点
