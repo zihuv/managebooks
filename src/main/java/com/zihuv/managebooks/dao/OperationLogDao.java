@@ -35,4 +35,13 @@ public interface OperationLogDao {
      * @return int
      */
     int deleteOperationLog(List<Integer> ids);
+
+    /**
+     * 查询开始时间与截止时间查询日志
+     *
+     * @param beginTime 开始时间
+     * @param endTime   截止时间
+     * @return java.util.List<com.zihuv.managebooks.entity.OperationLog>
+     */
+    List<OperationLog> listOperationLogByDateTime(String beginTime, String endTime);
 }

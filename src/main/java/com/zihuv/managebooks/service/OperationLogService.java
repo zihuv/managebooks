@@ -20,4 +20,15 @@ public interface OperationLogService {
      * @param ids 所要删除的日志id集合
      */
     void deleteOperationLog(List<Integer> ids);
+
+    /**
+     * 查询开始时间与截止时间查询日志
+     *
+     * @param beginTime 开始时间
+     * @param endTime   截止时间
+     * @param pageNum   页码
+     * @param pageSize  显示条数
+     * @return java.util.List<com.zihuv.managebooks.entity.OperationLog>
+     */
+    List<OperationLog> listOperationLogByDateTime(String beginTime, String endTime,Integer pageNum,Integer pageSize);
 }

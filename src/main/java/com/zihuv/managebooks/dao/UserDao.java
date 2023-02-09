@@ -3,6 +3,8 @@ package com.zihuv.managebooks.dao;
 import com.zihuv.managebooks.entity.User;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
+
 /**
  * 用户管理
  *
@@ -42,4 +44,11 @@ public interface UserDao {
      * @return com.zihuv.managebooks.entity.User
      */
     User getUserById(Integer id);
+
+    /**
+     * 查询所有用户
+     *
+     * @return java.util.List<com.zihuv.managebooks.entity.User>
+     */
+    List<User> listUser();
 }

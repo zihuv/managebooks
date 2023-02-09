@@ -34,4 +34,8 @@
         FROM user
         WHERE id = #{id}
     </select>
+    <select id="listUser" resultType="com.zihuv.managebooks.entity.User">
+        SELECT id, user_name, user_password, user_email
+        FROM user
+    </select>
 </mapper>

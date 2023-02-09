@@ -11,7 +11,7 @@
  Target Server Version : 50740 (5.7.40)
  File Encoding         : 65001
 
- Date: 08/02/2023 11:42:49
+ Date: 10/02/2023 00:02:15
 */
 
 SET NAMES utf8mb4;
@@ -29,7 +29,7 @@ CREATE TABLE `admin`  (
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `admin_admin_name_uindex`(`admin_name`) USING BTREE,
   UNIQUE INDEX `admin_id_uindex`(`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '管理员' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '管理员' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of admin
@@ -54,7 +54,7 @@ CREATE TABLE `book`  (
   UNIQUE INDEX `book_id_uindex`(`id`) USING BTREE,
   INDEX `book_book_category_id_fk`(`book_category`) USING BTREE,
   CONSTRAINT `book_book_category_id_fk` FOREIGN KEY (`book_category`) REFERENCES `book_category` (`id`) ON DELETE RESTRICT ON UPDATE CASCADE
-) ENGINE = InnoDB AUTO_INCREMENT = 17 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '书籍基本信息' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 16 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '书籍基本信息' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of book
@@ -85,7 +85,7 @@ CREATE TABLE `book_category`  (
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `book_category_id_uindex`(`id`) USING BTREE,
   UNIQUE INDEX `book_category_category_name_uindex`(`category_name`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 11 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '书籍类别' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 11 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '书籍类别' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of book_category
@@ -116,7 +116,7 @@ CREATE TABLE `borrow_book`  (
   INDEX `borrow_books_user_id_fk`(`user_id`) USING BTREE,
   CONSTRAINT `borrow_book_book_id_fk` FOREIGN KEY (`book_id`) REFERENCES `book` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `borrow_books_user_id_fk` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '借书记录' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '借书记录' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of borrow_book
@@ -135,7 +135,7 @@ CREATE TABLE `borrow_book_backup`  (
   `borrow_date` date NOT NULL COMMENT '借书日期',
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `borrow_book_backup_id_uindex`(`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '记录借书表删除数据' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '记录借书表删除数据' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of borrow_book_backup
@@ -155,8 +155,9 @@ CREATE TABLE `operation_log`  (
   `params` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '请求参数',
   `create_date` datetime NULL DEFAULT NULL COMMENT '日志创建时间',
   PRIMARY KEY (`id`) USING BTREE,
-  UNIQUE INDEX `operation_log_id_uindex`(`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 19 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '操作日志' ROW_FORMAT = Dynamic;
+  UNIQUE INDEX `operation_log_id_uindex`(`id`) USING BTREE,
+  INDEX `date_time_index`(`create_date`) USING BTREE
+) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '操作日志' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of operation_log
@@ -174,7 +175,7 @@ CREATE TABLE `user`  (
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `user_user_name_uindex`(`user_name`) USING BTREE,
   UNIQUE INDEX `user_id_uindex`(`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '用户' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '用户' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of user

@@ -3,6 +3,7 @@ package com.zihuv.managebooks.service.impl;
 import com.github.pagehelper.PageHelper;
 import com.zihuv.managebooks.constant.IdentityConst;
 import com.zihuv.managebooks.dao.AdminDao;
+import com.zihuv.managebooks.dao.UserDao;
 import com.zihuv.managebooks.entity.Admin;
 import com.zihuv.managebooks.entity.User;
 import com.zihuv.managebooks.enums.UserAdminEnums;
@@ -26,6 +27,8 @@ import java.util.List;
 public class AdminServiceImpl implements AdminService {
     @Autowired
     private AdminDao adminDao;
+    @Autowired
+    private UserDao userDao;
     @Autowired
     HttpServletRequest request;
 
@@ -85,11 +88,11 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public List<User> listUser(Integer pageNum, Integer pageSize) {
         PageHelper.startPage(pageNum,pageSize);
-        return adminDao.listUser();
+        return userDao.listUser();
     }
 
     @Override
     public User getUserById(Integer id) {
-        return adminDao.getUserById(id);
+        return userDao.getUserById(id);
     }
 }

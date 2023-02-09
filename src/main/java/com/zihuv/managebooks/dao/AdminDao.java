@@ -52,27 +52,4 @@ public interface AdminDao {
      * @return com.zihuv.managebooks.entity.Admin
      */
     Admin getAdminById(Integer id);
-
-    /**
-     * 查询所有用户
-     *
-     * @return java.util.List<com.zihuv.managebooks.entity.User>
-     */
-    List<User> listUser();
-
-    /**
-     * 根据id查询用户
-     *
-     * @param id 用户id
-     * @return com.zihuv.managebooks.entity.User
-     */
-    User getUserById(Integer id);
-
-    /**
-     * 添加用户
-     *
-     * @param user 用户信息
-     * @return int
-     */
-    int insertUser(User user);
 }

@@ -24,4 +24,17 @@
                create_date
         FROM operation_log
     </select>
+    <select id="listOperationLogByDateTime" resultType="com.zihuv.managebooks.entity.OperationLog">
+        SELECT id,
+               username,
+               description,
+               class_name,
+               method_name,
+               uri,
+               params,
+               create_date
+        FROM operation_log
+        WHERE create_date BETWEEN #{beginTime}
+                  AND #{endTime}
+    </select>
 </mapper>

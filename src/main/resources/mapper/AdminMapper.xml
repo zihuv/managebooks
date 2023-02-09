@@ -38,17 +38,4 @@
         FROM admin
         WHERE id = #{id}
     </select>
-    <select id="listUser" resultType="com.zihuv.managebooks.entity.User">
-        SELECT id, user_name, user_password, user_email
-        FROM user
-    </select>
-    <select id="getUserById" resultType="com.zihuv.managebooks.entity.User">
-        SELECT id, user_name, user_password, user_email
-        FROM user
-        WHERE id = #{id}
-    </select>
-    <insert id="insertUser">
-        INSERT INTO user(id, user_name, user_password, user_email)
-        VALUES (null, #{userName}, #{userPassword}, #{userEmail});
-    </insert>
 </mapper>

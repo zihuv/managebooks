@@ -30,4 +30,11 @@ public class OperationLogServiceImpl implements OperationLogService {
     public void deleteOperationLog(List<Integer> ids) {
         operationLogDao.deleteOperationLog(ids);
     }
+
+    @Override
+    public List<OperationLog> listOperationLogByDateTime(String beginTime, String endTime,
+                                                         Integer pageNum, Integer pageSize) {
+        PageHelper.startPage(pageNum, pageSize);
+        return operationLogDao.listOperationLogByDateTime(beginTime, endTime);
+    }
 }
