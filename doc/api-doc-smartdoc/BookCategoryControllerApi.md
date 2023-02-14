@@ -22,7 +22,7 @@
 
 **Request-example:**
 ```
-curl -X POST -i /category --data 'bookCategory=75yjss'
+curl -X POST -i /category --data 'bookCategory=fzzhyw'
 ```
 
 **Response-fields:**
@@ -36,7 +36,7 @@ curl -X POST -i /category --data 'bookCategory=75yjss'
 **Response-example:**
 ```
 {
-  "code": 284,
+  "code": 171,
   "message": "success",
   "data": {}
 }
@@ -64,7 +64,7 @@ curl -X POST -i /category --data 'bookCategory=75yjss'
 
 **Request-example:**
 ```
-curl -X DELETE -i /category/604
+curl -X DELETE -i /category/460
 ```
 
 **Response-fields:**
@@ -78,7 +78,7 @@ curl -X DELETE -i /category/604
 **Response-example:**
 ```
 {
-  "code": 9,
+  "code": 655,
   "message": "success",
   "data": {}
 }
@@ -107,7 +107,7 @@ curl -X DELETE -i /category/604
 
 **Request-example:**
 ```
-curl -X GET -i /category/list?pageNum=4&pageSize=10 --data '&4&10'
+curl -X GET -i /category/list?pageNum=419&pageSize=10 --data '&419&10'
 ```
 
 **Response-fields:**
@@ -123,12 +123,12 @@ curl -X GET -i /category/list?pageNum=4&pageSize=10 --data '&4&10'
 **Response-example:**
 ```
 {
-  "code": 626,
+  "code": 717,
   "message": "success",
   "data": [
     {
-      "id": 430,
-      "categoryName": "kacy.grady"
+      "id": 383,
+      "categoryName": "jim.kub"
     }
   ]
 }
@@ -157,7 +157,7 @@ curl -X GET -i /category/list?pageNum=4&pageSize=10 --data '&4&10'
 
 **Request-example:**
 ```
-curl -X GET -i /category?pageNum=152&pageSize=10 --data '&152&10'
+curl -X GET -i /category?pageNum=307&pageSize=10 --data '&307&10'
 ```
 
 **Response-fields:**
@@ -167,20 +167,20 @@ curl -X GET -i /category?pageNum=152&pageSize=10 --data '&152&10'
 |code|int32|返回码|-|
 |message|string|返回信息|-|
 |data|array|返回数据|-|
-|└─id|int32|No comments found.|-|
-|└─categoryName|string|No comments found.|-|
-|└─amount|int32|No comments found.|-|
+|└─id|int32|书籍类别id|-|
+|└─categoryName|string|书籍类别名称|-|
+|└─amount|int32|该书籍的数量|-|
 
 **Response-example:**
 ```
 {
-  "code": 824,
+  "code": 471,
   "message": "success",
   "data": [
     {
-      "id": 98,
-      "categoryName": "kacy.grady",
-      "amount": 516
+      "id": 64,
+      "categoryName": "jim.kub",
+      "amount": 20
     }
   ]
 }

@@ -1,8 +1,6 @@
 package com.zihuv.managebooks.service.impl;
 
-import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
 import com.zihuv.managebooks.dao.BookDao;
 import com.zihuv.managebooks.dao.BorrowBookDao;
 import com.zihuv.managebooks.dao.UserDao;
@@ -13,6 +11,7 @@ import com.zihuv.managebooks.exception.BizException;
 import com.zihuv.managebooks.service.BorrowBookService;
 import com.zihuv.managebooks.vo.BorrowBookVO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -27,6 +26,8 @@ import java.util.stream.Collectors;
  */
 @Service
 public class BorrowBookServiceImpl implements BorrowBookService {
+    @Value("${managebooks.borrowBookMonthDuration}")
+    private Integer borrowBookMonthDuration;
     @Autowired
     private BorrowBookDao borrowBookDao;
     @Autowired
@@ -74,7 +75,7 @@ public class BorrowBookServiceImpl implements BorrowBookService {
     }
 
     @Override
-    public List<BorrowBookVO> listBorrowBookByUserId(Integer userId,Integer pageNum, Integer pageSize) {
+    public List<BorrowBookVO> listBorrowBookByUserId(Integer userId, Integer pageNum, Integer pageSize) {
         PageHelper.startPage(pageNum, pageSize);
         return borrowBookDao.listBorrowBookByUserId(userId)
                 .stream()
@@ -83,7 +84,7 @@ public class BorrowBookServiceImpl implements BorrowBookService {
     }
 
     @Override
-    public List<BorrowBookVO> listAllBorrowBook(Integer pageNum,Integer pageSize) {
+    public List<BorrowBookVO> listAllBorrowBook(Integer pageNum, Integer pageSize) {
         PageHelper.startPage(pageNum, pageSize);
         //BorrowBook转成BorrowBookVO集合
         return borrowBookDao.listAllBorrowBook()
@@ -93,17 +94,16 @@ public class BorrowBookServiceImpl implements BorrowBookService {
     }
 
 
-
     //BorrowBook转成BorrowBookVO
     private BorrowBookVO borrowBookToVO(BorrowBook borrowBook) {
         BorrowBookVO borrowBookVO = new BorrowBookVO();
         borrowBookVO.setUserName(userDao.getUserById(borrowBook.getUserId()).getUserName());
         borrowBookVO.setBookName(bookDao.getBookById(borrowBook.getBookId()).getBookName());
-        //将字符串的时间转换为LocalDate类型，并在原有借书时间基础上添加2个月（设定是借书时间默认2个月）
+        //将字符串的时间转换为LocalDate类型，并在原有借书时间基础上添加X个月（设定是借书时间默认2个月）
         //再转换成字符串类型存进borrowBook类型中的returnTime属性
         String borrowDate = borrowBook.getBorrowDate();
         borrowBookVO.setBorrowDate(borrowDate);
-        borrowBookVO.setReturnDate(LocalDate.parse(borrowDate).plusMonths(2).toString());
+        borrowBookVO.setReturnDate(LocalDate.parse(borrowDate).plusMonths(borrowBookMonthDuration).toString());
         return borrowBookVO;
     }
 }

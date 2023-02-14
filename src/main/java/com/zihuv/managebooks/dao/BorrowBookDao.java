@@ -47,9 +47,16 @@ public interface BorrowBookDao {
     List<BorrowBook> listBorrowBookByUserId(Integer userId);
 
     /**
-     * 查询所有借书记录
+     * 查询所有人历史借阅记录
      *
      * @return java.util.List<com.zihuv.managebooks.vo.BorrowBookVO>
      */
     List<BorrowBook> listAllBorrowBook();
+
+    /**
+     * 查询当前在借书籍记录
+     *
+     * @return java.util.List<com.zihuv.managebooks.entity.BorrowBook>
+     */
+    List<BorrowBook> listBorrowBook();
 }

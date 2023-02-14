@@ -1,11 +1,13 @@
 package com.zihuv.managebooks.controller;
 
 import com.zihuv.managebooks.annotation.OptLog;
+import com.zihuv.managebooks.constant.IdentityConst;
 import com.zihuv.managebooks.entity.Book;
 import com.zihuv.managebooks.service.BookService;
 import com.zihuv.managebooks.utils.CommonUtils;
 import com.zihuv.managebooks.vo.BookVO;
 import com.zihuv.managebooks.vo.Result;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,6 +23,8 @@ import java.util.List;
 public class BookController {
     @Autowired
     private BookService bookService;
+    @Autowired
+    private HttpSession session;
 
     /**
      * 添加书籍
@@ -31,6 +35,7 @@ public class BookController {
     @OptLog(value = "添加书籍")
     @PostMapping("/book")
     public Result<?> insertBook(@RequestBody Book book) {
+        CommonUtils.checkLogin(IdentityConst.ADMIN, session);
         bookService.insertBook(book);
         return Result.success();
     }
@@ -44,6 +49,7 @@ public class BookController {
     @OptLog(value = "删除书籍")
     @DeleteMapping("/book/{id}")
     public Result<?> deleteBookById(@PathVariable Integer id) {
+        CommonUtils.checkLogin(IdentityConst.ADMIN, session);
         bookService.deleteBookById(id);
         return Result.success();
     }
@@ -57,6 +63,7 @@ public class BookController {
     @OptLog(value = "修改书籍信息")
     @PutMapping("/book")
     public Result<?> updateBook(@RequestBody Book book) {
+        CommonUtils.checkLogin(IdentityConst.ADMIN, session);
         bookService.updateBook(book);
         return Result.success();
     }
@@ -64,7 +71,7 @@ public class BookController {
     /**
      * 查询所有书籍
      *
-     * @param pageNum 页码
+     * @param pageNum  页码
      * @param pageSize 显示条数
      * @return com.zihuv.managebooks.vo.Result<java.util.List < com.zihuv.managebooks.vo.BookVO>>
      */
@@ -73,7 +80,7 @@ public class BookController {
     public Result<List<BookVO>> listBook(@RequestParam Integer pageNum,
                                          @RequestParam Integer pageSize) {
         //检查页码和显示条数的数据是否合法
-        CommonUtils.checkPageNumAndSize(pageNum,pageSize);
+        CommonUtils.checkPageNumAndSize(pageNum, pageSize);
         List<BookVO> result = bookService.listBook(pageNum, pageSize);
         return Result.success(result);
     }
@@ -103,7 +110,7 @@ public class BookController {
                                                    @RequestParam Integer pageNum,
                                                    @RequestParam Integer pageSize) {
         //检查页码和显示条数的数据是否合法
-        CommonUtils.checkPageNumAndSize(pageNum,pageSize);
+        CommonUtils.checkPageNumAndSize(pageNum, pageSize);
         List<BookVO> books = bookService.listBookByBookName(bookName, pageNum, pageSize);
         return Result.success(books);
     }
@@ -113,7 +120,7 @@ public class BookController {
      *
      * @param categoryName 类别名称
      * @param pageNum      页码
-     * @param pageSize
+     * @param pageSize     页面大小
      * @return com.zihuv.managebooks.vo.Result<java.util.List < com.zihuv.managebooks.vo.BookVO>>
      */
     @OptLog(value = "根据书籍类别查询书籍")
@@ -122,7 +129,7 @@ public class BookController {
                                                    @RequestParam Integer pageNum,
                                                    @RequestParam Integer pageSize) {
         //检查页码和显示条数的数据是否合法
-        CommonUtils.checkPageNumAndSize(pageNum,pageSize);
+        CommonUtils.checkPageNumAndSize(pageNum, pageSize);
         List<BookVO> books = bookService.listBookByCategory(categoryName, pageNum, pageSize);
         return Result.success(books);
     }

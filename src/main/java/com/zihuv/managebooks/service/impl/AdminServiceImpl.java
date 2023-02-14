@@ -34,6 +34,8 @@ public class AdminServiceImpl implements AdminService {
 
     @Override
     public void register(Admin admin) {
+        //检查admin是否为空
+        CommonUtils.checkParamIsNull(admin);
         Admin a = adminDao.getAdminByAdminName(admin.getAdminName());
         //若管理员已经存在，a != null，不允许注册
         if (a != null) {

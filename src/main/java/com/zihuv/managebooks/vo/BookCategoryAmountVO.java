@@ -10,7 +10,18 @@ import lombok.Data;
  */
 @Data
 public class BookCategoryAmountVO {
+    /**
+     * 书籍类别id
+     */
     private Integer id;
+
+    /**
+     * 书籍类别名称
+     */
     private String categoryName;
+
+    /**
+     * 该书籍的数量
+     */
     private Integer amount;
 }

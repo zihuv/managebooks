@@ -8,6 +8,7 @@ import com.zihuv.managebooks.service.UserService;
 import com.zihuv.managebooks.utils.CommonUtils;
 import com.zihuv.managebooks.vo.Result;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

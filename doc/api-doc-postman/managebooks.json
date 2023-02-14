@@ -908,6 +908,60 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "文件请求",
+			"item": [
+				{
+					"name": "excel导入数据库",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"description": "要上传的excel文件",
+									"type": "file",
+									"src": "/C:/Users/10413/Desktop/domo01.xlsx"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/excel",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"excel"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "数据库导出至excel",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/excel",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"excel"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	]
 }

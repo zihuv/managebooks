@@ -23,7 +23,7 @@
 
 **Request-example:**
 ```
-curl -X GET -i /log?pageNum=808&pageSize=10 --data '&808&10'
+curl -X GET -i /log?pageNum=924&pageSize=10 --data '&924&10'
 ```
 
 **Response-fields:**
@@ -45,18 +45,18 @@ curl -X GET -i /log?pageNum=808&pageSize=10 --data '&808&10'
 **Response-example:**
 ```
 {
-  "code": 165,
+  "code": 931,
   "message": "success",
   "data": [
     {
-      "id": 481,
-      "username": "verla.kiehn",
-      "description": "pldtsj",
-      "className": "verla.kiehn",
-      "methodName": "verla.kiehn",
-      "uri": "bpz3pt",
-      "params": "nr9q0t",
-      "createDate": "2023-02-09"
+      "id": 802,
+      "username": "jim.kub",
+      "description": "wwhpjx",
+      "className": "jim.kub",
+      "methodName": "jim.kub",
+      "uri": "ofrpzt",
+      "params": "2cq40d",
+      "createDate": "2023-02-14"
     }
   ]
 }
@@ -80,12 +80,12 @@ curl -X GET -i /log?pageNum=808&pageSize=10 --data '&808&10'
 
 | Parameter | Type | Required | Description | Since |
 |-----------|------|----------|-------------|-------|
-|ids|array|true|所要删除的日志id集合,[array of int32]|-|
+|ids|array|false|所要删除的日志id集合,[array of int32]|-|
 
 **Request-example:**
 ```
 curl -X DELETE -H 'Content-Type: application/json' -i /log --data '[
-  658
+  856
 ]'
 ```
 
@@ -100,7 +100,7 @@ curl -X DELETE -H 'Content-Type: application/json' -i /log --data '[
 **Response-example:**
 ```
 {
-  "code": 812,
+  "code": 741,
   "message": "success",
   "data": {}
 }
@@ -131,7 +131,7 @@ curl -X DELETE -H 'Content-Type: application/json' -i /log --data '[
 
 **Request-example:**
 ```
-curl -X GET -i /log/time?beginTime=2023-02-09 23:57:20&endTime=2023-02-09 23:57:20&pageNum=688&pageSize=10 --data '&2023-02-09 23:57:20&2023-02-09 23:57:20&688&10'
+curl -X GET -i /log/time?beginTime=2023-02-14 21:01:24&endTime=2023-02-14 21:01:24&pageNum=824&pageSize=10 --data '&2023-02-14 21:01:24&2023-02-14 21:01:24&824&10'
 ```
 
 **Response-fields:**
@@ -153,18 +153,18 @@ curl -X GET -i /log/time?beginTime=2023-02-09 23:57:20&endTime=2023-02-09 23:57:
 **Response-example:**
 ```
 {
-  "code": 785,
+  "code": 803,
   "message": "success",
   "data": [
     {
-      "id": 706,
-      "username": "verla.kiehn",
-      "description": "6ee8f4",
-      "className": "verla.kiehn",
-      "methodName": "verla.kiehn",
-      "uri": "bxrmhm",
-      "params": "b4m9bk",
-      "createDate": "2023-02-09"
+      "id": 569,
+      "username": "jim.kub",
+      "description": "vq4itt",
+      "className": "jim.kub",
+      "methodName": "jim.kub",
+      "uri": "ijxqdi",
+      "params": "xw3jqa",
+      "createDate": "2023-02-14"
     }
   ]
 }

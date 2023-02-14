@@ -8,6 +8,14 @@
         VALUES (null, #{bookName}, #{bookAuthor}, #{bookPublish}, #{bookCategory}, #{bookPrize},
                 #{bookIntroduction});
     </insert>
+    <insert id="insertBookByList">
+        INSERT INTO book(id, book_name, book_author, book_publish, book_category, book_prize, book_introduction)
+        VALUES
+        <foreach collection="books" item="book" separator=",">
+            (null,#{book.bookName}, #{book.bookAuthor}, #{book.bookPublish}, #{book.bookCategory}, #{book.bookPrize},
+            #{book.bookIntroduction})
+        </foreach>
+    </insert>
     <select id="getBookById" resultType="com.zihuv.managebooks.entity.Book">
         SELECT bk.id,
                bk.book_name,
@@ -88,7 +96,7 @@
         FROM book AS bk,
              book_category AS bc
         WHERE bc.category_name = #{categoryName}
-         AND  bk.book_category = bc.id
+          AND bk.book_category = bc.id
     </select>
     <select id="listBookByCategoryId" resultType="com.zihuv.managebooks.entity.Book">
         SELECT bk.id,
@@ -101,7 +109,7 @@
         FROM book AS bk,
              book_category AS bc
         WHERE bc.id = #{id}
-          AND  bk.book_category = bc.id
+          AND bk.book_category = bc.id
     </select>
 
 </mapper>

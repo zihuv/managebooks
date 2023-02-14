@@ -1,11 +1,14 @@
 package com.zihuv.managebooks.controller;
 
 import com.zihuv.managebooks.annotation.OptLog;
+import com.zihuv.managebooks.constant.IdentityConst;
 import com.zihuv.managebooks.entity.BookCategory;
+import com.zihuv.managebooks.entity.User;
 import com.zihuv.managebooks.service.BookCategoryService;
 import com.zihuv.managebooks.utils.CommonUtils;
 import com.zihuv.managebooks.vo.BookCategoryAmountVO;
 import com.zihuv.managebooks.vo.Result;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,6 +24,8 @@ import java.util.List;
 public class BookCategoryController {
     @Autowired
     private BookCategoryService bookCategoryService;
+    @Autowired
+    private HttpSession session;
 
     /**
      * 添加书籍类别
@@ -31,6 +36,7 @@ public class BookCategoryController {
     @OptLog(value = "添加书籍类别")
     @PostMapping("/category")
     public Result<?> insertCategory(@RequestParam String bookCategory) {
+        CommonUtils.checkLogin(IdentityConst.ADMIN, session);
         bookCategoryService.insertCategory(bookCategory);
         return Result.success();
     }
@@ -44,6 +50,7 @@ public class BookCategoryController {
     @OptLog(value = "删除书籍类别")
     @DeleteMapping("/category/{id}")
     public Result<?> deleteCategoryById(@PathVariable Integer id) {
+        CommonUtils.checkLogin(IdentityConst.ADMIN, session);
         bookCategoryService.deleteCategoryById(id);
         return Result.success();
     }

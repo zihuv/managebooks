@@ -18,20 +18,20 @@
 
 | Parameter | Type | Required | Description | Since |
 |-----------|------|----------|-------------|-------|
-|id|int32|true|书籍id|-|
+|id|int32|false|书籍id|-|
 |bookName|string|false|书名|-|
 |bookAuthor|string|false|书籍作者|-|
 |bookPublish|string|false|书籍出版社|-|
-|state|string|true|借阅状态|-|
+|state|string|false|借阅状态|-|
 
 **Request-example:**
 ```
 curl -X POST -H 'Content-Type: application/json' -i /borrow --data '{
-  "id": 357,
-  "bookName": "kacy.grady",
-  "bookAuthor": "Walker Kerluke",
-  "bookPublish": "7cl1qg",
-  "state": "lrxoc1"
+  "id": 493,
+  "bookName": "jim.kub",
+  "bookAuthor": "Mario VonRueden",
+  "bookPublish": "6tvw35",
+  "state": "jbvc71"
 }'
 ```
 
@@ -46,7 +46,7 @@ curl -X POST -H 'Content-Type: application/json' -i /borrow --data '{
 **Response-example:**
 ```
 {
-  "code": 800,
+  "code": 992,
   "message": "success",
   "data": {}
 }
@@ -74,7 +74,7 @@ curl -X POST -H 'Content-Type: application/json' -i /borrow --data '{
 
 **Request-example:**
 ```
-curl -X PUT -i /borrow --data 'bookId=694'
+curl -X PUT -i /borrow --data 'bookId=499'
 ```
 
 **Response-fields:**
@@ -88,7 +88,7 @@ curl -X PUT -i /borrow --data 'bookId=694'
 **Response-example:**
 ```
 {
-  "code": 120,
+  "code": 455,
   "message": "success",
   "data": {}
 }
@@ -117,7 +117,7 @@ curl -X PUT -i /borrow --data 'bookId=694'
 
 **Request-example:**
 ```
-curl -X GET -i /borrow/user?pageNum=171&pageSize=10 --data '&171&10'
+curl -X GET -i /borrow/user?pageNum=461&pageSize=10 --data '&461&10'
 ```
 
 **Response-fields:**
@@ -127,22 +127,22 @@ curl -X GET -i /borrow/user?pageNum=171&pageSize=10 --data '&171&10'
 |code|int32|返回码|-|
 |message|string|返回信息|-|
 |data|array|返回数据|-|
-|└─userName|string|No comments found.|-|
-|└─bookName|string|No comments found.|-|
-|└─borrowDate|string|No comments found.|-|
-|└─returnDate|string|No comments found.|-|
+|└─userName|string|借阅者用户名|-|
+|└─bookName|string|书籍名称|-|
+|└─borrowDate|string|借阅日期|-|
+|└─returnDate|string|书籍归还日期|-|
 
 **Response-example:**
 ```
 {
-  "code": 106,
+  "code": 927,
   "message": "success",
   "data": [
     {
-      "userName": "kacy.grady",
-      "bookName": "kacy.grady",
-      "borrowDate": "2023-02-08",
-      "returnDate": "2023-02-08"
+      "userName": "jim.kub",
+      "bookName": "jim.kub",
+      "borrowDate": "2023-02-14",
+      "returnDate": "2023-02-14"
     }
   ]
 }
@@ -171,7 +171,7 @@ curl -X GET -i /borrow/user?pageNum=171&pageSize=10 --data '&171&10'
 
 **Request-example:**
 ```
-curl -X GET -i /borrow/admin?pageNum=708&pageSize=10 --data '&708&10'
+curl -X GET -i /borrow/admin?pageNum=853&pageSize=10 --data '&853&10'
 ```
 
 **Response-fields:**
@@ -181,22 +181,22 @@ curl -X GET -i /borrow/admin?pageNum=708&pageSize=10 --data '&708&10'
 |code|int32|返回码|-|
 |message|string|返回信息|-|
 |data|array|返回数据|-|
-|└─userName|string|No comments found.|-|
-|└─bookName|string|No comments found.|-|
-|└─borrowDate|string|No comments found.|-|
-|└─returnDate|string|No comments found.|-|
+|└─userName|string|借阅者用户名|-|
+|└─bookName|string|书籍名称|-|
+|└─borrowDate|string|借阅日期|-|
+|└─returnDate|string|书籍归还日期|-|
 
 **Response-example:**
 ```
 {
-  "code": 989,
+  "code": 438,
   "message": "success",
   "data": [
     {
-      "userName": "kacy.grady",
-      "bookName": "kacy.grady",
-      "borrowDate": "2023-02-08",
-      "returnDate": "2023-02-08"
+      "userName": "jim.kub",
+      "bookName": "jim.kub",
+      "borrowDate": "2023-02-14",
+      "returnDate": "2023-02-14"
     }
   ]
 }

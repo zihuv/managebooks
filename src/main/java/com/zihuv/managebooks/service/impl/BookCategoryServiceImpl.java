@@ -8,6 +8,7 @@ import com.zihuv.managebooks.entity.BookCategory;
 import com.zihuv.managebooks.enums.BookStatusEnums;
 import com.zihuv.managebooks.exception.BizException;
 import com.zihuv.managebooks.service.BookCategoryService;
+import com.zihuv.managebooks.utils.CommonUtils;
 import com.zihuv.managebooks.vo.BookCategoryAmountVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,6 +30,8 @@ public class BookCategoryServiceImpl implements BookCategoryService {
 
     @Override
     public void insertCategory(String categoryName) {
+        //判断书籍类别名称是否为空
+        CommonUtils.checkParamIsNull(categoryName);
         //去除字符串中的空格（首尾和字符串中间的空格）
         categoryName = categoryName.replace(" ", "");
         BookCategory category = bookCategoryDao.getCategoryByCategoryName(categoryName);
@@ -46,10 +49,10 @@ public class BookCategoryServiceImpl implements BookCategoryService {
         if (category == null) {
             throw new BizException(BookStatusEnums.CATEGORY_NOT_EXIST);
         }
-        //判断该书籍类别是否在book表当中已经被使用
+        //判断该书籍类别是否在book表当中正在被使用
         //若该书籍类别已经被使用不允许直接删除该书籍类别
         List<Book> books = bookDao.listBookByCategoryId(id);
-        if (!"[]".equals(String.valueOf(books))) {
+        if (!books.isEmpty()) {
             throw new BizException(BookStatusEnums.CATEGORY_IS_USED);
         }
         //删除书籍类别

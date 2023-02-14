@@ -15,6 +15,12 @@ public interface BookService {
     void insertBook(Book book);
 
     /**
+     * 批量添加书籍
+     *
+     * @param books 书籍信息集合
+     */
+    void insertBookByList(List<Book> books);
+    /**
      * 根据id删除书籍
      *
      * @param id 书籍id

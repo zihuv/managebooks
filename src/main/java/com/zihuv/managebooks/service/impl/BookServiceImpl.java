@@ -6,11 +6,14 @@ import com.zihuv.managebooks.dao.BookDao;
 import com.zihuv.managebooks.dao.BorrowBookDao;
 import com.zihuv.managebooks.entity.Book;
 import com.zihuv.managebooks.enums.BookStatusEnums;
+import com.zihuv.managebooks.enums.StatusCodeEnums;
 import com.zihuv.managebooks.exception.BizException;
 import com.zihuv.managebooks.service.BookService;
+import com.zihuv.managebooks.utils.CommonUtils;
 import com.zihuv.managebooks.vo.BookVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -30,7 +33,21 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public void insertBook(Book book) {
+        //判断名称、作者、书籍出版社、书籍类别不能为空
+        CommonUtils.checkParamIsNull(book.getBookName(), book.getBookAuthor(),
+                book.getBookPublish(), book.getBookCategory());
         bookDao.insertBook(book);
+    }
+
+    @Transactional
+    @Override
+    public void insertBookByList(List<Book> books) {
+        for (Book book : books) {
+            //判断名称、作者、书籍出版社、书籍类别不能为空
+            CommonUtils.checkParamIsNull(book.getBookName(), book.getBookAuthor(),
+                    book.getBookPublish(), book.getBookCategory());
+        }
+        bookDao.insertBookByList(books);
     }
 
     @Override
@@ -81,8 +98,8 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public List<BookVO> listBookByCategory(String categoryName,Integer pageNum, Integer pageSize) {
-        PageHelper.startPage(pageNum,pageSize);
+    public List<BookVO> listBookByCategory(String categoryName, Integer pageNum, Integer pageSize) {
+        PageHelper.startPage(pageNum, pageSize);
         return bookDao.listBookByCategoryName(categoryName)
                 .stream()
                 .map(this::bookToVo)

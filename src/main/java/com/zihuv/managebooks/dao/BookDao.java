@@ -22,6 +22,14 @@ public interface BookDao {
     int insertBook(Book book);
 
     /**
+     * 批量添加书籍
+     *
+     * @param books 书籍集合
+     * @return int
+     */
+    int insertBookByList(List<Book> books);
+
+    /**
      * 根据id查询书籍
      *
      * @param id 书籍id

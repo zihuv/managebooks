@@ -18,24 +18,22 @@
 
 | Parameter | Type | Required | Description | Since |
 |-----------|------|----------|-------------|-------|
-|id|int32|true|书籍id|-|
-|bookName|string|true|书籍名称|-|
-|bookAuthor|string|true|书籍作者|-|
-|bookPublish|string|true|书籍出版社|-|
-|bookCategory|int32|true|书籍类别|-|
-|bookPrize|double|true|书籍价格|-|
-|bookIntroduction|string|true|书籍介绍|-|
+|bookName|string|false|书籍名称|-|
+|bookAuthor|string|false|书籍作者|-|
+|bookPublish|string|false|书籍出版社|-|
+|bookCategory|int32|false|书籍类别|-|
+|bookPrize|double|false|书籍价格|-|
+|bookIntroduction|string|false|书籍介绍|-|
 
 **Request-example:**
 ```
 curl -X POST -H 'Content-Type: application/json' -i /book --data '{
-  "id": 780,
-  "bookName": "kacy.grady",
-  "bookAuthor": "Walker Kerluke",
-  "bookPublish": "qswu21",
-  "bookCategory": 556,
-  "bookPrize": 8.68,
-  "bookIntroduction": "nyl2da"
+  "bookName": "jim.kub",
+  "bookAuthor": "Mario VonRueden",
+  "bookPublish": "6ds26k",
+  "bookCategory": 175,
+  "bookPrize": 65.00,
+  "bookIntroduction": "5kixsh"
 }'
 ```
 
@@ -50,7 +48,7 @@ curl -X POST -H 'Content-Type: application/json' -i /book --data '{
 **Response-example:**
 ```
 {
-  "code": 342,
+  "code": 533,
   "message": "success",
   "data": {}
 }
@@ -78,7 +76,7 @@ curl -X POST -H 'Content-Type: application/json' -i /book --data '{
 
 **Request-example:**
 ```
-curl -X DELETE -i /book/290
+curl -X DELETE -i /book/429
 ```
 
 **Response-fields:**
@@ -92,7 +90,7 @@ curl -X DELETE -i /book/290
 **Response-example:**
 ```
 {
-  "code": 651,
+  "code": 168,
   "message": "success",
   "data": {}
 }
@@ -107,7 +105,7 @@ curl -X DELETE -i /book/290
 
 **Content-Type:** `application/json`
 
-**Description:** 修改书籍信息（需要登录）
+**Description:** 修改书籍信息
 
 
 
@@ -116,7 +114,6 @@ curl -X DELETE -i /book/290
 
 | Parameter | Type | Required | Description | Since |
 |-----------|------|----------|-------------|-------|
-|id|int32|true|书籍id|-|
 |bookName|string|false|书籍名称|-|
 |bookAuthor|string|false|书籍作者|-|
 |bookPublish|string|false|书籍出版社|-|
@@ -127,13 +124,12 @@ curl -X DELETE -i /book/290
 **Request-example:**
 ```
 curl -X PUT -H 'Content-Type: application/json' -i /book --data '{
-  "id": 455,
-  "bookName": "kacy.grady",
-  "bookAuthor": "Walker Kerluke",
-  "bookPublish": "ix4f2u",
-  "bookCategory": 286,
-  "bookPrize": 63.93,
-  "bookIntroduction": "ooe70z"
+  "bookName": "jim.kub",
+  "bookAuthor": "Mario VonRueden",
+  "bookPublish": "pxyvia",
+  "bookCategory": 387,
+  "bookPrize": 35.76,
+  "bookIntroduction": "le1rmf"
 }'
 ```
 
@@ -148,7 +144,7 @@ curl -X PUT -H 'Content-Type: application/json' -i /book --data '{
 **Response-example:**
 ```
 {
-  "code": 934,
+  "code": 522,
   "message": "success",
   "data": {}
 }
@@ -177,7 +173,7 @@ curl -X PUT -H 'Content-Type: application/json' -i /book --data '{
 
 **Request-example:**
 ```
-curl -X GET -i /book/list?pageNum=708&pageSize=10 --data '&708&10'
+curl -X GET -i /book/list?pageNum=679&pageSize=10 --data '&679&10'
 ```
 
 **Response-fields:**
@@ -196,15 +192,15 @@ curl -X GET -i /book/list?pageNum=708&pageSize=10 --data '&708&10'
 **Response-example:**
 ```
 {
-  "code": 485,
+  "code": 943,
   "message": "success",
   "data": [
     {
-      "id": 927,
-      "bookName": "kacy.grady",
-      "bookAuthor": "Walker Kerluke",
-      "bookPublish": "onvgp2",
-      "state": "emeb4s"
+      "id": 308,
+      "bookName": "jim.kub",
+      "bookAuthor": "Mario VonRueden",
+      "bookPublish": "hzafxk",
+      "state": "1ee4kz"
     }
   ]
 }
@@ -232,7 +228,7 @@ curl -X GET -i /book/list?pageNum=708&pageSize=10 --data '&708&10'
 
 **Request-example:**
 ```
-curl -X GET -i /book/203
+curl -X GET -i /book/534
 ```
 
 **Response-fields:**
@@ -251,14 +247,14 @@ curl -X GET -i /book/203
 **Response-example:**
 ```
 {
-  "code": 977,
+  "code": 410,
   "message": "success",
   "data": {
-    "id": 908,
-    "bookName": "kacy.grady",
-    "bookAuthor": "Walker Kerluke",
-    "bookPublish": "nsf5ht",
-    "state": "bbp4m6"
+    "id": 843,
+    "bookName": "jim.kub",
+    "bookAuthor": "Mario VonRueden",
+    "bookPublish": "yeq5fp",
+    "state": "pchpem"
   }
 }
 ```
@@ -287,7 +283,7 @@ curl -X GET -i /book/203
 
 **Request-example:**
 ```
-curl -X GET -i /book?bookName=kacy.grady&pageNum=978&pageSize=10 --data '&kacy.grady&978&10'
+curl -X GET -i /book?bookName=jim.kub&pageNum=821&pageSize=10 --data '&jim.kub&821&10'
 ```
 
 **Response-fields:**
@@ -306,15 +302,15 @@ curl -X GET -i /book?bookName=kacy.grady&pageNum=978&pageSize=10 --data '&kacy.g
 **Response-example:**
 ```
 {
-  "code": 360,
+  "code": 782,
   "message": "success",
   "data": [
     {
-      "id": 45,
-      "bookName": "kacy.grady",
-      "bookAuthor": "Walker Kerluke",
-      "bookPublish": "jx7yhi",
-      "state": "vrhf1m"
+      "id": 215,
+      "bookName": "jim.kub",
+      "bookAuthor": "Mario VonRueden",
+      "bookPublish": "17z4fl",
+      "state": "88ai33"
     }
   ]
 }
@@ -344,7 +340,7 @@ curl -X GET -i /book?bookName=kacy.grady&pageNum=978&pageSize=10 --data '&kacy.g
 
 **Request-example:**
 ```
-curl -X GET -i /book/category?categoryName=kacy.grady&pageNum=272&pageSize=10 --data '&kacy.grady&272&10'
+curl -X GET -i /book/category?categoryName=jim.kub&pageNum=408&pageSize=10 --data '&jim.kub&408&10'
 ```
 
 **Response-fields:**
@@ -363,15 +359,15 @@ curl -X GET -i /book/category?categoryName=kacy.grady&pageNum=272&pageSize=10 --
 **Response-example:**
 ```
 {
-  "code": 601,
+  "code": 217,
   "message": "success",
   "data": [
     {
-      "id": 487,
-      "bookName": "kacy.grady",
-      "bookAuthor": "Walker Kerluke",
-      "bookPublish": "iqtg74",
-      "state": "zg13ak"
+      "id": 832,
+      "bookName": "jim.kub",
+      "bookAuthor": "Mario VonRueden",
+      "bookPublish": "vhe4ke",
+      "state": "b8u8xx"
     }
   ]
 }

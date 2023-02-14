@@ -3,6 +3,7 @@ package com.zihuv.managebooks.service.impl;
 import com.zihuv.managebooks.constant.IdentityConst;
 import com.zihuv.managebooks.dao.UserDao;
 import com.zihuv.managebooks.entity.User;
+import com.zihuv.managebooks.enums.StatusCodeEnums;
 import com.zihuv.managebooks.enums.UserAdminEnums;
 import com.zihuv.managebooks.exception.BizException;
 import com.zihuv.managebooks.service.UserService;
@@ -26,6 +27,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void insertUser(User user) {
+        //检查user是否为空
+        CommonUtils.checkParamIsNull(user);
         User u = userDao.getUserByUserName(user.getUserName());
         //若用户名已经存在，u != null，不允许注册
         if (u != null) {

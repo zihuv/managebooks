@@ -1,3 +1,4 @@
+#spring
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -6,6 +7,7 @@ spring:
     password: 1234
     type: com.alibaba.druid.pool.DruidDataSource
 
+#mybatis
 mybatis:
   mapper-locations: classpath:mapper/*.xml
   configuration:
@@ -14,3 +16,10 @@ mybatis:
 #pagehelper分页插件配置
 pagehelper:
   helperDialect: mysql
+
+#managebooks项目配置
+managebooks:
+  #配置用户借几个月的书（eg:2 代表用户将能借2个月的书）
+  borrowBookMonthDuration: 2
+  #使用cron配置每天检查借阅情况的时间(eg:* * * * * ? 代表每秒都检查一次借阅情况)
+  borrowBookCheckTime: "0 0 0 * * ?"

@@ -10,8 +10,23 @@ import lombok.Data;
  */
 @Data
 public class BorrowBookVO {
+    /**
+     * 借阅者用户名
+     */
     private String userName;
+
+    /**
+     * 书籍名称
+     */
     private String bookName;
+
+    /**
+     * 借阅日期
+     */
     private String borrowDate;
+
+    /**
+     * 书籍归还日期
+     */
     private String returnDate;
 }
