@@ -105,6 +105,7 @@ mybatis动态sql，修改给出的参数的信息，不修改未给出的参数�
 
 **ps:** 
 1.borrow_book_backup是用于记录borrow_book中所删除的数据的表，使用触发器实现
+
 2.operation_log的create_time字段使用了索引，提高查询效率
 
 
@@ -116,4 +117,4 @@ mybatis动态sql，修改给出的参数的信息，不修改未给出的参数�
 - 使用枚举类和常量，以及通过在yaml文件配置参数，尽可能减少字符串或数字直接写入代码当中，解耦
 - 统一用xml文件书写sql，方便管理sql
 - 支持使用excel文件批量添加书籍数据，并可将数据库中的书籍数据用excel导出
-- 使用SpringBoot的任务调度实现固定时间检查书籍借阅情况
+- 使用SpringBoot的任务调度实现固定时间检查书籍借阅情况，并使用@Transactional注解开启事务，防止添加异常数据
