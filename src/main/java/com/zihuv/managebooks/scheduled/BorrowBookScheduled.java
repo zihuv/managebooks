@@ -31,7 +31,6 @@ public class BorrowBookScheduled {
      */
     @Scheduled(cron = "${managebooks.borrowBookCheckTime}")
     public void checkOverdueBorrowBook() {
-        System.out.println("1");
         List<BorrowBook> borrowBooks = borrowBookDao.listBorrowBook();
         List<BorrowBook> overdueBorrowBooks = new ArrayList<>();
         //判断是否有书籍逾期

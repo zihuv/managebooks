@@ -23,3 +23,9 @@ managebooks:
   borrowBookMonthDuration: 2
   #使用cron配置每天检查借阅情况的时间(eg:* * * * * ? 代表每秒都检查一次借阅情况)
   borrowBookCheckTime: "0 0 0 * * ?"
+  #配置导出的Excel文件
+  excel:
+    #导出的Excel默认文件名称
+    fileName: "demo01"
+    #设置sheet名称
+    sheet: "sheet1"

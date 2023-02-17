@@ -9,12 +9,14 @@ import com.zihuv.managebooks.listener.BookListener;
 import com.zihuv.managebooks.service.BookService;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 
 /**
@@ -25,6 +27,10 @@ import java.nio.charset.StandardCharsets;
  */
 @RestController
 public class ExcelUploadAndDownloadController {
+    @Value("${managebooks.excel.fileName:demo01}")
+    private String fileName;
+    @Value("${managebooks.excel.sheet:sheet01}")
+    private String sheetName;
     @Autowired
     private BookService bookService;
     @Autowired
@@ -52,11 +58,12 @@ public class ExcelUploadAndDownloadController {
      */
     @GetMapping("/excel")
     public void databaseToExcel(HttpServletResponse response) throws IOException {
-        //配置response
-        response.setContentType("application/x-excel");
+        //设置响应数据格式和编码
+        response.setContentType("application/x-excel;charset=UTF-8");
+        //指定文件的名称和扩展名
         response.setHeader("Content-Disposition",
-                "attachment;filename=" + new String(("domo01.xlsx").getBytes(), StandardCharsets.UTF_8));
+                "attachment;filename=" + URLEncoder.encode(fileName + ".xlsx", StandardCharsets.UTF_8));
         EasyExcel.write(response.getOutputStream(), Book.class)
-                .sheet("sheet1").doWrite(() -> bookDao.listBook());
+                .sheet(sheetName).doWrite(() -> bookDao.listBook());
     }
 }

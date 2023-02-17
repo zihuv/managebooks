@@ -69,8 +69,11 @@ public class BookListener extends AnalysisEventListener<Book> {
      * 存储数据库
      */
     private void saveData() {
-        log.info("开始存入{}条存储数据库！", list.size());
-        bookService.insertBookByList(list);
+        int dataSize = list.size();
+        log.info("开始存入{}条存储数据库！", dataSize);
+        if (dataSize != 0) {
+            bookService.insertBookByList(list);
+        }
         log.info("数据存储成功！");
     }
 }
